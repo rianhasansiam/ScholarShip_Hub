@@ -81,7 +81,7 @@ const FeaturedScholarships = () => {
               </div>
               <NavLink
                 to={scholarship.link}
-                className="block text-center mt-4 text-blue-500 hover:text-blue-700"
+                className="block text-center mt-4 text-[#ff5202] hover:text-[#e99066]"
               >
                 View Scholarship Details
               </NavLink>

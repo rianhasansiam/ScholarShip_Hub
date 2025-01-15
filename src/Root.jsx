@@ -5,6 +5,7 @@ import AllScholarship from "./Pages/AllScholarship";
 import AboutUs from "./Pages/AboutUs";
 import LogIn from "./Security/LogIn";
 import SignUp from "./Security/SignUp";
+import ScholarshipDetails from "./Pages/ScholarshipDetails";
 
 
 
@@ -37,6 +38,10 @@ const Root = createBrowserRouter([
         {
           path:'signUp',
           element:<SignUp></SignUp>
+        },
+        {
+          path:'scholarshipDetails/:_id',
+          element:<ScholarshipDetails></ScholarshipDetails>
         }
       ]
     },

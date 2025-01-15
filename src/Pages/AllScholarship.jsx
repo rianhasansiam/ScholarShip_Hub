@@ -9,18 +9,17 @@ const AllScholarship = (props) => {
   const { loading, setLoading, setAllScholarships, allScholarships } = useContext(contextData);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Fetch scholarships with pagination
-  const fetchScholarships = async (page) => {
+  const fetchScholarships = async (page, query = '') => {
     setLoading(true);
     try {
       const response = await axios.get('http://localhost:5000/all-Scholarships', {
-        params: { page, limit: 6 },
+        params: { page, limit: 6, search: query }, // Pass search query as a parameter
       });
-
-      // Set scholarships data and totalPages from the response
-      setAllScholarships(response.data.scholarships);  // Extracting scholarships from the response
-      setTotalPages(response.data.totalPages);         // Extracting totalPages from the response
+      setAllScholarships(response.data.scholarships);
+      setTotalPages(response.data.totalPages);
     } catch (error) {
       console.error('Error fetching scholarships:', error);
     } finally {
@@ -28,19 +27,46 @@ const AllScholarship = (props) => {
     }
   };
 
-  // Fetch scholarships when currentPage changes
   useEffect(() => {
     fetchScholarships(currentPage);
   }, [currentPage]);
 
-  // Handle page change for pagination
+
+  useEffect(() => {
+    
+    setCurrentPage(1); // Reset to the first page on search
+    fetchScholarships(1, searchQuery);
+
+  }, [searchQuery]);
+
+  const handleSearch = () => {
+    setCurrentPage(1); // Reset to the first page on search
+    fetchScholarships(1, searchQuery);
+  };
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    fetchScholarships(page, searchQuery); // Update page with current search query
   };
 
   return (
     <div>
       <h2 className='text-center font-bold text-4xl py-5 pt-10'>All Scholarships Circular</h2>
+      <div className="search-box flex justify-center my-4">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by Scholarship Name, University, or Degree"
+          className="p-2 border border-gray-300 rounded-l-md w-80"
+        />
+        <button
+          onClick={handleSearch}
+          className="bg-[#ff5202] text-white px-4 py-2 rounded-r-md hover:bg-[#ff5202]"
+        >
+          Search
+        </button>
+      </div>
 
       {loading ? (
         <p>Loading...</p>
@@ -64,46 +90,13 @@ const AllScholarship = (props) => {
 
 
 
-          {/* Pagination Controls */}
-          {/* <div className="pagination flex justify-center mt-4">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 disabled:bg-gray-200"
-            >
-              Previous
-            </button>
-
-            <span className="mx-2">Page {currentPage} of {totalPages}</span>
-
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 disabled:bg-gray-200"
-            >
-              Next
-            </button>
-          </div> */}
-
-
-
-
-
-
-
+    
 
 
 
 
 <div className="pagination flex justify-center mt-4 space-x-1">
-  {/* First Button */}
-  {/* <button
-    onClick={() => handlePageChange(1)}
-    disabled={currentPage === 1}
-    className="px-2 py-1 border border-gray-300 rounded hover:bg-gray-200 disabled:bg-gray-100"
-  >
-    «
-  </button> */}
+  
 
   {/* Previous Button */}
   <button
@@ -122,7 +115,7 @@ const AllScholarship = (props) => {
         key={page}
         onClick={() => handlePageChange(page)}
         className={`px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 ${
-          currentPage === page ? 'bg-blue-500 text-white' : 'bg-white'
+          currentPage === page ? 'bg-[#ff5202] text-white' : 'bg-white'
         }`}
       >
         {page}
@@ -139,14 +132,7 @@ const AllScholarship = (props) => {
     <i className="fa-solid fa-chevron-right"></i>
   </button>
 
-  {/* Last Button */}
-  {/* <button
-    onClick={() => handlePageChange(totalPages)}
-    disabled={currentPage === totalPages}
-    className="px-2 py-1 border border-gray-300 rounded hover:bg-gray-200 disabled:bg-gray-100"
-  >
-    »
-  </button> */}
+ 
 </div>
 
         </div>
