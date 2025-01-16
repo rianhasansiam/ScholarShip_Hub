@@ -17,7 +17,7 @@ const AboutUs = () => {
           {/* Left Section */}
           <div className="lg:w-1/2">
             <img
-              src="/images/scholarship-journey.png"  // Add a relevant image here
+              src="https://i.ibb.co.com/sKVwzrx/clemens-van-lay-un1s8-VOLRC0-unsplash.jpg"  // Add a relevant image here
               alt="Scholarship Journey"
               className="rounded-lg shadow-md w-full"
             />
@@ -55,7 +55,7 @@ const AboutUs = () => {
             {/* Team Member 1 */}
             <div className="text-center">
               <img
-                src="/images/team1.jpg"  // Replace with team member image
+                src="https://i.ibb.co.com/n6k3fKT/images.jpg"  // Replace with team member image
                 alt="Team Member"
                 className="rounded-full mx-auto w-32 h-32 object-cover mb-4"
               />
@@ -67,7 +67,7 @@ const AboutUs = () => {
             {/* Team Member 2 */}
             <div className="text-center">
               <img
-                src="/images/team2.jpg"  // Replace with team member image
+                src="https://i.ibb.co.com/PzcXKLr/download-2.jpg"  // Replace with team member image
                 alt="Team Member"
                 className="rounded-full mx-auto w-32 h-32 object-cover mb-4"
               />
@@ -79,7 +79,7 @@ const AboutUs = () => {
             {/* Team Member 3 */}
             <div className="text-center">
               <img
-                src="/images/team3.jpg"  // Replace with team member image
+                src="https://i.ibb.co.com/vhMdKpP/download-1.jpg"  // Replace with team member image
                 alt="Team Member"
                 className="rounded-full mx-auto w-32 h-32 object-cover mb-4"
               />

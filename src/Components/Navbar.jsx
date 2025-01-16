@@ -1,11 +1,39 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, NavLink } from 'react-router-dom'
 import { contextData } from '../Contex'
 
 const Navbar = () => {
 
-const {signoutHandle, userData}= useContext(contextData)
+const {signoutHandle, userData, picture, name, userRole}= useContext(contextData)
+
+const [dropdownOpen, setDropdownOpen] = useState(false);
+const dropdownRef = useRef(null); // Reference for the dropdown
+
+const handleDropdownToggle = () => {
+  setDropdownOpen(!dropdownOpen); // Toggle the dropdown open/close
+};
+
+const closeDropdown = () => {
+  setDropdownOpen(false);
+};
+
+// Close dropdown if clicked outside the dropdown area
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      closeDropdown();
+    }
+  };
+
+  if (dropdownOpen) {
+    document.addEventListener('mousedown', handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [dropdownOpen]);
 
 
   return (
@@ -45,15 +73,49 @@ const {signoutHandle, userData}= useContext(contextData)
 
           <li><NavLink to="/" className="nav-item">Home</NavLink></li>
           <li><NavLink to="/allscholarship" className="nav-item">All Scholarship</NavLink></li>
-          <li><NavLink to="/userdashboard" className="nav-item">User Dashboard</NavLink></li>
-          <li><NavLink to="/admindashboard" className="nav-item">Admin Dashboard</NavLink></li>
+        {userData?(  userRole==='Member'? <li><NavLink to="/userdashboard" className="nav-item">User Dashboard</NavLink></li>:<li><NavLink to="/admindashboard" className="nav-item">Admin Dashboard</NavLink></li>):''}
+          
           <li> <NavLink to="/aboutUs" className="nav-item">About Us</NavLink></li>
 
           {/* User Dashboard (private), Admin Dashboard(private) */}
         </ul>
       </div>
       <div className="navbar-end">
-        {userData?<button className='btn' onClick={signoutHandle}>Logout</button>
+        {userData?
+        
+        <div className="relative">
+        {/* Profile Picture */}
+        <div className="flex items-center space-x-4">
+          <img
+            src={picture || 'https://via.placeholder.com/50'} // Fallback image if no profile picture
+            alt="Profile"
+            className="w-10 h-10 rounded-full cursor-pointer"
+            onClick={handleDropdownToggle} // Toggle dropdown on click
+          />
+        </div>
+  
+        {/* Dropdown Menu */}
+        {dropdownOpen && (
+          <div
+            ref={dropdownRef} // Attach the ref to the dropdown element
+            className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg"
+          >
+            <div className="px-4 py-3">
+              <p className="text-sm text-gray-700 font-semibold text-center">{name || 'Guest'}</p>
+            </div>
+            <div className="border-t"></div>
+            <button
+              className="w-full px-4 py-2 text-center font-semibold text-sm text-gray-700 hover:bg-gray-100"
+              onClick={() => {
+                signoutHandle();
+                closeDropdown(); // Close dropdown after logging out
+              }}
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
         : 
         <ul className='flex gap-3 underline font-semibold text-lg '>
           <Link className='hover:text-[#ff5202]' to='/login'>LogIn</Link>

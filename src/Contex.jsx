@@ -12,6 +12,7 @@ const Contex = ({ children }) => {
   const [name, setName] = useState('');
   const [picture, setPicture] = useState('https://img.icons8.com/?size=100&id=ywULFSPkh4kI&format=png&color=000000');
   const [userData, setUserData] = useState([]);
+  const [userRole, setuserRole] = useState('Member');
 
   
 
@@ -39,7 +40,7 @@ if(user){
   const name=user.displayName
   const email=user.email
   const picture=user.photoURL
-  const userDataSend={name, email, picture}
+  const userDataSend={name, email, picture, userRole}
   console.log(userDataSend, 'send this')
 
 
@@ -107,7 +108,8 @@ if(user){
     email,
 
     picture,
-    setPicture
+    setPicture,
+    userRole
   };
 
   return (

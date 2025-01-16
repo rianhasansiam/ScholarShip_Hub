@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const SignUp = () => {
 
-  const {googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture }=useContext(contextData)
+  const {googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture, userRole }=useContext(contextData)
 
 
 
@@ -19,7 +19,7 @@ const SignUp = () => {
 
 
   const datasendHandle=async()=>{
-    const userDataSend={name, email, picture}
+    const userDataSend={name, email, picture, userRole}
 
 
 
