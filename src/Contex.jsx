@@ -7,6 +7,7 @@ const Contex = ({children}) => {
 
 const [loading, setLoading] = useState(false);
 const [allScholarships, setAllScholarships] = useState([]);
+
   
   
   

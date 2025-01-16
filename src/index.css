@@ -18,3 +18,23 @@ a.active{
 
    
   }
+
+
+.authBg{
+    background-image: url("https://i.ibb.co.com/XxtDGzY/bg-img.jpg");
+    background-size: cover;
+
+
+
+  
+}
+
+
+.blur-container {
+    background-color: rgba(255, 255, 255, 0.4); /* Light transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  }
+  
