@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 });
 
 const useAxiosPublic = () => {
-   const {setLoading}=useContext(contextData) 
+  const { setLoading } = useContext(contextData)
 
   useEffect(() => {
     const requestInterceptor = axiosInstance.interceptors.request.use((config) => {
@@ -36,7 +36,7 @@ const useAxiosPublic = () => {
     };
   }, []);
 
-  return { axiosInstance }; // Return axiosInstance and loading state
+  return { axiosInstance}; // Return axiosInstance and loading state
 };
 
 export default useAxiosPublic;

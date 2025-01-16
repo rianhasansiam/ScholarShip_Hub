@@ -3,19 +3,37 @@ import React, { useContext, useState } from 'react';
 import auth from './Firebase';
 import { Link } from 'react-router-dom';
 import { contextData } from '../Contex';
+import axios from 'axios';
 
 const SignUp = () => {
 
-  const {googleLogReg}=useContext(contextData)
+  const {googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture }=useContext(contextData)
 
 
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+ 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+
+
+
+  const datasendHandle=async()=>{
+    const userDataSend={name, email, picture}
+
+
+
+      const res=await axios.post('http://localhost:5000/userData', userDataSend )
+       console.log(res.data)
+
+
+
+  }
+
   const handleRegister = async (e) => {
+
+
+
     e.preventDefault();
 
     // Password Validation
@@ -36,14 +54,7 @@ const SignUp = () => {
       return;
     }
 
-    // try {
-    //   await createUserWithEmailAndPassword(auth, email, password);
-      
-    //   console.log("Registration successful");
-    // } catch (error) {
-    //   console.log("Error:", error.message);
-    // }
-
+    
 
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -60,10 +71,15 @@ const SignUp = () => {
           // photoURL: photoUrl
         })
         .then(() => {
+
+
+          datasendHandle()
+
           // After successful profile update, set the state
           // setUserData(user);  
-          // setDp(photoUrl);    
-          // setdisname(name);   
+          // setpic(photoUrl);    
+          // setName(name); 
+ 
           console.log('Profile updated!');
         })
         .catch((error) => {

@@ -1,119 +1,97 @@
 import { signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import auth from "./Security/Firebase";  // Ensure Firebase is correctly initialized
+import auth from "./Security/Firebase"; // Ensure Firebase is correctly initialized
+import axios from 'axios'; // Use axios directly here
 
 export const contextData = createContext();
 
 const Contex = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [allScholarships, setAllScholarships] = useState([]);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [picture, setPicture] = useState('https://img.icons8.com/?size=100&id=ywULFSPkh4kI&format=png&color=000000');
   const [userData, setUserData] = useState([]);
-  // console.log(userData)
-  console.log(loading)
 
+  
+
+
+
+
+
+
+
+
+
+
+  
   const provider = new GoogleAuthProvider();
 
   const googleLogReg = () => {
-    setLoading(true)
+    setLoading(true);
     signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      // After successful Google sign-in, update the state
-      // setUserData(user);
-      // setDp(user.photoURL);  // Set Google user dp
-      // setdisname(user.displayName);  // Set Google user display name
-     
+      .then((result) => {
+        const user = result.user;
 
- setLoading(false)
-    })
-    .catch((error) => {
-      console.error('Google sign-in error:', error);
-    });
+
+
+if(user){
+  const name=user.displayName
+  const email=user.email
+  const picture=user.photoURL
+  const userDataSend={name, email, picture}
+  console.log(userDataSend, 'send this')
+
+
+     axios.post('http://localhost:5000/userData', userDataSend )
+     .then(res=>console.log(res.data))
+}
+
+
+       
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Google sign-in error:', error);
+        setLoading(false);
+      });
   };
 
-
-
-
-
-
-
-
-
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // setUserData(user);
-        // setDp(user.photoURL);
-        // setdisname(user.displayName);
+        setUserData(user);
+        setName(user?.displayName);
+        setEmail(user?.email);
+        setPicture(user?.photoURL)
+        console.log('checker login');
 
-        setUserData(user)
 
-        console.log('checker login')
-        setLoading(false)
-  
-  
-      // if(user.email){
-      //   axios.post('http://localhost:5000/jwt',user.email, {withCredentials:true})
-      //   .then(res=> console.log(res.data))
-  
-  
-      // }
-      // else{
-      //   axios.post('http://localhost:5000/logout',{},{withCredentials:true})
-      //   .then(res=>console.log("logout",res.data))
-      // }
-  
-  
-  
+        setLoading(false);
+       
       } else {
         console.log('User is signed out');
-        // setUserData(null);
       }
     });
-  
+
     return () => {
       unsubscribe();
     };
   }, []);
-  
 
-  
-
-
-
-
-
-  const signoutHandle=()=>{
-    setLoading(true)
-    signOut(auth).then(() => {
-     
-      // setUserData(null)
-      console.log('Signout successful')
-      // toast.warn("Signout successful", {
-      //   position: "top-center"
-      // })
-  
-      // axios.post('http://localhost:5000/logout',{},{withCredentials:true})
-      // .then(res=>console.log("logout",res.data))
-      // Sign-out successful.
-
-      setLoading(false)
-    }).catch(() => {
-  
-      
-    });
-    
-  }
-  
-
-
-
-
-
-
-
-
+  const signoutHandle = () => {
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        console.log('Signout successful');
+        setUserData('')
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
 
   const info = {
     loading,
@@ -122,7 +100,14 @@ const Contex = ({ children }) => {
     setAllScholarships,
     googleLogReg,
     signoutHandle,
-    userData
+    userData,
+    setName,
+    setEmail,
+    name,
+    email,
+
+    picture,
+    setPicture
   };
 
   return (
