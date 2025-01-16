@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Link, NavLink } from 'react-router-dom'
+import { contextData } from '../Contex'
 
 const Navbar = () => {
 
-
+const {signoutHandle, userData}= useContext(contextData)
 
 
   return (
@@ -44,16 +45,20 @@ const Navbar = () => {
 
           <li><NavLink to="/" className="nav-item">Home</NavLink></li>
           <li><NavLink to="/allscholarship" className="nav-item">All Scholarship</NavLink></li>
+          <li><NavLink to="/userdashboard" className="nav-item">User Dashboard</NavLink></li>
+          <li><NavLink to="/admindashboard" className="nav-item">Admin Dashboard</NavLink></li>
           <li> <NavLink to="/aboutUs" className="nav-item">About Us</NavLink></li>
 
-
+          {/* User Dashboard (private), Admin Dashboard(private) */}
         </ul>
       </div>
       <div className="navbar-end">
+        {userData?<button className='btn' onClick={signoutHandle}>Logout</button>
+        : 
         <ul className='flex gap-3 underline font-semibold text-lg '>
           <Link className='hover:text-[#ff5202]' to='/login'>LogIn</Link>
           <Link className='hover:text-[#ff5202]' to='/signup'>SignUp</Link>
-        </ul>
+        </ul>}
       </div>
     </div>
   </div>

@@ -50,7 +50,7 @@ const LogIn = () => {
             <label className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-indigo-300 focus:outline-none focus:border-indigo-400"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-[#f0b9a0] focus:outline-none focus:border-[#d8a791]"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -62,7 +62,7 @@ const LogIn = () => {
             <label className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-indigo-300 focus:outline-none focus:border-indigo-400"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-[#f0b9a0] focus:outline-none focus:border-[#d8a791]"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -72,15 +72,15 @@ const LogIn = () => {
 
           <div className="flex items-center justify-between">
             <label className="inline-flex items-center">
-              <input type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600" />
+              <input type="checkbox" className="form-checkbox h-4 w-4 text-[#ff5202]" />
               <span className="ml-2 text-sm text-gray-600">Remember Me</span>
             </label>
-            <Link to="" className="text-sm text-indigo-600 hover:underline">Forgot Password?</Link>
+            <Link to="" className="text-sm text-[#ff5202] hover:underline">Forgot Password?</Link>
           </div>
 
           <button
             type="submit"
-            className="w-full px-4 py-2 mt-4 text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 focus:outline-none focus:bg-indigo-700"
+            className="w-full px-4 py-2 mt-4 text-white bg-[#ff5202] rounded-lg hover:bg-[#f37941] focus:outline-none focus:bg-[#d8a791]"
           >
             Login
           </button>

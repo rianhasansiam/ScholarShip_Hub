@@ -6,6 +6,8 @@ import AboutUs from "./Pages/AboutUs";
 import LogIn from "./Security/LogIn";
 import SignUp from "./Security/SignUp";
 import ScholarshipDetails from "./Pages/ScholarshipDetails";
+import UserDashboard from "./Pages/UserDashboard";
+import AdminDashboard from "./Pages/AdminDashboard";
 
 
 
@@ -42,6 +44,14 @@ const Root = createBrowserRouter([
         {
           path:'scholarshipDetails/:_id',
           element:<ScholarshipDetails></ScholarshipDetails>
+        },
+        {
+          path:'userdashboard',
+          element: <UserDashboard></UserDashboard>
+        },
+        {
+          path:'admindashboard',
+          element: <AdminDashboard></AdminDashboard>
         }
       ]
     },

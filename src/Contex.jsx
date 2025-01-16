@@ -7,10 +7,14 @@ export const contextData = createContext();
 const Contex = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [allScholarships, setAllScholarships] = useState([]);
+  const [userData, setUserData] = useState([]);
+  // console.log(userData)
+  console.log(loading)
 
   const provider = new GoogleAuthProvider();
 
   const googleLogReg = () => {
+    setLoading(true)
     signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
@@ -20,7 +24,7 @@ const Contex = ({ children }) => {
       // setdisname(user.displayName);  // Set Google user display name
      
 
-      console.log(user)
+ setLoading(false)
     })
     .catch((error) => {
       console.error('Google sign-in error:', error);
@@ -36,13 +40,17 @@ const Contex = ({ children }) => {
 
 
   useEffect(() => {
+    setLoading(true)
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // setUserData(user);
         // setDp(user.photoURL);
         // setdisname(user.displayName);
 
+        setUserData(user)
+
         console.log('checker login')
+        setLoading(false)
   
   
       // if(user.email){
@@ -77,6 +85,7 @@ const Contex = ({ children }) => {
 
 
   const signoutHandle=()=>{
+    setLoading(true)
     signOut(auth).then(() => {
      
       // setUserData(null)
@@ -88,6 +97,8 @@ const Contex = ({ children }) => {
       // axios.post('http://localhost:5000/logout',{},{withCredentials:true})
       // .then(res=>console.log("logout",res.data))
       // Sign-out successful.
+
+      setLoading(false)
     }).catch(() => {
   
       
@@ -110,7 +121,8 @@ const Contex = ({ children }) => {
     allScholarships,
     setAllScholarships,
     googleLogReg,
-    signoutHandle
+    signoutHandle,
+    userData
   };
 
   return (

@@ -94,7 +94,7 @@ const SignUp = () => {
             <label className="block text-sm font-medium text-gray-700">Name</label>
             <input
               type="text"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-indigo-300 focus:outline-none focus:border-indigo-400"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-[#f0b9a0] focus:outline-none focus:border-[#d8a791]"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -106,7 +106,7 @@ const SignUp = () => {
             <label className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-indigo-300 focus:outline-none focus:border-indigo-400"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-[#f0b9a0] focus:outline-none focus:border-[#d8a791]"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +118,7 @@ const SignUp = () => {
             <label className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-indigo-300 focus:outline-none focus:border-indigo-400"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-[#f0b9a0] focus:outline-none focus:border-[#d8a791]"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -130,7 +130,7 @@ const SignUp = () => {
             <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-indigo-300 focus:outline-none focus:border-indigo-400"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-[#f0b9a0] focus:outline-none focus:border-[#d8a791]"
               placeholder="Confirm your password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -140,7 +140,7 @@ const SignUp = () => {
 
           <button
             type="submit"
-            className="w-full px-4 py-2 mt-4 text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 focus:outline-none focus:bg-indigo-700"
+            className="w-full px-4 py-2 mt-4 text-white bg-[#ff5202] rounded-lg hover:bg-[#e77844] focus:outline-none focus:bg-[#ee7740]"
           >
             Register
           </button>
