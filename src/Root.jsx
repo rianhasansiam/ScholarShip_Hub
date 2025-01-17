@@ -8,6 +8,7 @@ import SignUp from "./Security/SignUp";
 import ScholarshipDetails from "./Pages/ScholarshipDetails";
 import UserDashboard from "./Pages/UserDashboard";
 import AdminDashboard from "./Pages/AdminDashboard";
+import Error404 from "./Pages/Error404";
 
 
 
@@ -20,6 +21,7 @@ const Root = createBrowserRouter([
     {
       path: "/",
       element: <App/>,
+      errorElement: <Error404></Error404>,
       children:[
         {
           path:'/',

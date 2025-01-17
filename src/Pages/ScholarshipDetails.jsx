@@ -5,6 +5,7 @@ import { contextData } from '../Contex'
 import { useLocation } from 'react-router-dom'
 import ReviewerCard from '../Components/ReviewerCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import Loading from './Loading'
 
 const ScholarshipDetails = () => {
 
@@ -20,7 +21,7 @@ const ScholarshipDetails = () => {
 
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
   if (!scholarshipDetails) {

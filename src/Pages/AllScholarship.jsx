@@ -4,12 +4,15 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { contextData } from '../Contex';
 import axios from 'axios';
 import ScolarshipCard from '../Components/ScolarshipCard';
+import Loading from './Loading';
 
 const AllScholarship = (props) => {
   const { loading, setLoading, setAllScholarships, allScholarships } = useContext(contextData);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+
+  console.log(loading)
 
   // Fetch scholarships with pagination
   const fetchScholarships = async (page, query = '') => {
@@ -50,7 +53,8 @@ const AllScholarship = (props) => {
   };
 
   return (
-    <div>
+  <>
+  {loading? <Loading></Loading>:  <div>
       <h2 className='text-center font-bold text-4xl py-5 pt-10'>All Scholarships Circular</h2>
       <div className="search-box flex justify-center my-4">
         <input
@@ -137,7 +141,8 @@ const AllScholarship = (props) => {
 
         </div>
       )}
-    </div>
+    </div>}
+  </>
   );
 };
 

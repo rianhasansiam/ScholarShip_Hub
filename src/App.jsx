@@ -3,13 +3,18 @@ import Navbar from "./Components/Navbar"
 import Footer from "./Components/Footer"
 
 
-function App() {
 
+function App() {
 
   return (
     <>
     <Navbar/>
-    <Outlet/>
+
+
+
+<Outlet></Outlet>
+
+   
     <Footer></Footer>
 
       
