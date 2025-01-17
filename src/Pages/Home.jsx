@@ -8,8 +8,10 @@ import Loading from './Loading'
 import { contextData } from '../Contex'
 
 const Home = () => {
-  const {loading}= useContext(contextData)
-  console.log(loading)
+  const {loading,setLoading}= useContext(contextData)
+  // console.log(loading)
+  setLoading(false)
+  
   return (
    <>
    

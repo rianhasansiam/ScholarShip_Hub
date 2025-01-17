@@ -1,22 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import auth from './Firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import { contextData } from '../Contex';
 // Assuming you have a CSS file named styles.css
 
 const LogIn = () => {
 
-  const {googleLogReg}=useContext(contextData)
+  const {googleLogReg,redirectPath }=useContext(contextData)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+
+  const navigation=useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
     console.log({ email, password });
 
-
+    navigation(redirectPath)
 
 
 
@@ -39,6 +42,22 @@ const LogIn = () => {
 
 
 
+  useEffect(() => {
+   
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigation(redirectPath)
+
+       
+      } else {
+        console.log('User is signed out');
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
 
   return (

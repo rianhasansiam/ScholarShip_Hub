@@ -12,7 +12,7 @@ const AllScholarship = (props) => {
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
 
-  console.log(loading)
+  // console.log(loading)
 
   // Fetch scholarships with pagination
   const fetchScholarships = async (page, query = '') => {

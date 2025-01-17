@@ -7,33 +7,9 @@ const Navbar = () => {
 
 const {signoutHandle, userData, picture, name, userRole}= useContext(contextData)
 
-const [dropdownOpen, setDropdownOpen] = useState(false);
-const dropdownRef = useRef(null); // Reference for the dropdown
+// console.log(picture,name)
 
-const handleDropdownToggle = () => {
-  setDropdownOpen(!dropdownOpen); // Toggle the dropdown open/close
-};
 
-const closeDropdown = () => {
-  setDropdownOpen(false);
-};
-
-// Close dropdown if clicked outside the dropdown area
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      closeDropdown();
-    }
-  };
-
-  if (dropdownOpen) {
-    document.addEventListener('mousedown', handleClickOutside);
-  }
-
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, [dropdownOpen]);
 
 
   return (
@@ -73,7 +49,7 @@ useEffect(() => {
 
           <li><NavLink to="/" className="nav-item">Home</NavLink></li>
           <li><NavLink to="/allscholarship" className="nav-item">All Scholarship</NavLink></li>
-        {userData?(  userRole==='Member'? <li><NavLink to="/userdashboard" className="nav-item">User Dashboard</NavLink></li>:<li><NavLink to="/admindashboard" className="nav-item">Admin Dashboard</NavLink></li>):''}
+        {userData?(  userRole==='Member'? <li><NavLink to="/userdashboard/myprofile" className="nav-item">User Dashboard</NavLink></li>:<li><NavLink to="/admindashboard" className="nav-item">Admin Dashboard</NavLink></li>):''}
           
           <li> <NavLink to="/aboutUs" className="nav-item">About Us</NavLink></li>
 
@@ -83,18 +59,45 @@ useEffect(() => {
       <div className="navbar-end">
         {userData?
         
-        <div className="relative">
+        <div className=" dropdown dropdown-end  z-30">
         {/* Profile Picture */}
-        <div className="flex items-center space-x-4">
+
+        
+
+
+        <div tabIndex={0} role="button" className="flex items-center space-x-4 ">
           <img
             src={picture || 'https://via.placeholder.com/50'} // Fallback image if no profile picture
             alt="Profile"
             className="w-10 h-10 rounded-full cursor-pointer"
-            onClick={handleDropdownToggle} // Toggle dropdown on click
+
           />
+
+          <ul
+          tabIndex={0}
+          className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-40 w-52 p-2 shadow">
+        <li className="px-4 py-3">
+              <p className="text-sm text-gray-700 font-semibold text-center">{name || 'Guest'}</p>
+            </li>
+
+
+          <li
+              className="w-full px-4 py-2 text-center font-semibold text-sm text-gray-700 hover:bg-gray-100"
+              onClick={() => {
+                signoutHandle();
+    
+              }}
+            >
+              Logout
+            </li>
+        </ul>
+
         </div>
+
+
+        
   
-        {/* Dropdown Menu */}
+        {/* Dropdown Menu
         {dropdownOpen && (
           <div
             ref={dropdownRef} // Attach the ref to the dropdown element
@@ -114,7 +117,9 @@ useEffect(() => {
               Logout
             </button>
           </div>
-        )}
+        )} */}
+
+
       </div>
         : 
         <ul className='flex gap-3 underline font-semibold text-lg '>

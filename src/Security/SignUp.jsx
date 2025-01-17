@@ -1,16 +1,16 @@
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import React, { useContext, useEffect, useState } from 'react';
 import auth from './Firebase';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { contextData } from '../Contex';
 import axios from 'axios';
 
 const SignUp = () => {
 
-  const {googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture, userRole }=useContext(contextData)
+  const {googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture, userRole, redirectPath}=useContext(contextData)
 
 
-
+const navigation=useNavigate()
  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -62,7 +62,7 @@ const SignUp = () => {
       const user = userCredential.user;
       console.log(user);
 
-
+      // navigation(redirectPath)
 
       if (user) {
         // Update the profile (set the display name and photo URL)
@@ -100,6 +100,27 @@ const SignUp = () => {
 
 
   };
+
+
+
+
+
+  useEffect(() => {
+   
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigation(redirectPath)
+
+       
+      } else {
+        console.log('User is signed out');
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="bg-gray-100 flex justify-center items-center h-screen authBg">

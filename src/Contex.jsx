@@ -2,19 +2,21 @@ import { signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from
 import { createContext, useEffect, useState } from "react";
 import auth from "./Security/Firebase"; // Ensure Firebase is correctly initialized
 import axios from 'axios'; // Use axios directly here
+import { useNavigate } from "react-router-dom";
 
 export const contextData = createContext();
 
 const Contex = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [allScholarships, setAllScholarships] = useState([]);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState();
+  const [name, setName] = useState();
   const [picture, setPicture] = useState('https://img.icons8.com/?size=100&id=ywULFSPkh4kI&format=png&color=000000');
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState();
   const [userRole, setuserRole] = useState('Member');
+  const [redirectPath, setRedirectPath] = useState('/');
 
-  
+
 
 
 
@@ -33,6 +35,7 @@ const Contex = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
+  
 
 
 
@@ -58,6 +61,13 @@ if(user){
       });
   };
 
+
+
+
+
+
+
+
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -65,9 +75,13 @@ if(user){
         setUserData(user);
         setName(user?.displayName);
         setEmail(user?.email);
-        setPicture(user?.photoURL)
+        if(user.photoURL){
+          setPicture(user?.photoURL)
+        }
         console.log('checker login');
 
+
+      
 
         setLoading(false);
        
@@ -86,7 +100,10 @@ if(user){
     signOut(auth)
       .then(() => {
         console.log('Signout successful');
-        setUserData('')
+        setUserData(null)
+        setEmail(null)
+        setName(null)
+        setPicture('https://img.icons8.com/?size=100&id=ywULFSPkh4kI&format=png&color=000000')
         setLoading(false);
       })
       .catch(() => {
@@ -109,7 +126,11 @@ if(user){
 
     picture,
     setPicture,
-    userRole
+    userRole,
+    setRedirectPath,
+    redirectPath,
+
+
   };
 
   return (

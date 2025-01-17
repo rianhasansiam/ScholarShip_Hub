@@ -6,9 +6,13 @@ import AboutUs from "./Pages/AboutUs";
 import LogIn from "./Security/LogIn";
 import SignUp from "./Security/SignUp";
 import ScholarshipDetails from "./Pages/ScholarshipDetails";
-import UserDashboard from "./Pages/UserDashboard";
+import UserDashboard from "./Pages/UserDashboard/UserDashboard";
 import AdminDashboard from "./Pages/AdminDashboard";
 import Error404 from "./Pages/Error404";
+import Private from "./Pages/Private";
+import MyProfile from "./Pages/UserDashboard/MyProfile";
+import MyApplication from "./Pages/UserDashboard/MyApplication";
+import MyReviews from "./Pages/UserDashboard/MyReviews";
 
 
 
@@ -49,7 +53,21 @@ const Root = createBrowserRouter([
         },
         {
           path:'userdashboard',
-          element: <UserDashboard></UserDashboard>
+          element: <Private><UserDashboard></UserDashboard></Private>,
+          children:[
+            {
+              path:'myprofile',
+              element:<MyProfile></MyProfile>
+            },
+            {
+              path:'myapplication',
+              element:<MyApplication></MyApplication>
+            },
+            {
+              path:'myreviews',
+              element:<MyReviews></MyReviews>
+            }
+          ]
         },
         {
           path:'admindashboard',
