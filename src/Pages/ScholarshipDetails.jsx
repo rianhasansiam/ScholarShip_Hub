@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import useAllDataFetch from '../hooks/useAllDataFetch'
 import { contextData } from '../Contex'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ReviewerCard from '../Components/ReviewerCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Loading from './Loading'
@@ -29,6 +29,7 @@ const ScholarshipDetails = () => {
   }
 
   const {
+
     university_name,
     university_logo,
     scholarship_category,
@@ -106,9 +107,9 @@ const ScholarshipDetails = () => {
         </div>
 
         <div className="mt-8 flex justify-end">
-          <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+          <Link to={`/payment/${_id}`} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
             Apply Scholarship
-          </button>
+          </Link>
         </div>
 
         {/* Reviews Section */}

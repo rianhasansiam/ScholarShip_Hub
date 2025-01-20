@@ -13,6 +13,8 @@ import Private from "./Pages/Private";
 import MyProfile from "./Pages/UserDashboard/MyProfile";
 import MyApplication from "./Pages/UserDashboard/MyApplication";
 import MyReviews from "./Pages/UserDashboard/MyReviews";
+import PaymentLayout from "./Pages/PaymentLayout";
+
 
 
 
@@ -31,6 +33,7 @@ const Root = createBrowserRouter([
           path:'/',
           element:<Home></Home>
         },
+       
         {
           path:'allscholarship',
           element:<AllScholarship></AllScholarship>
@@ -51,6 +54,10 @@ const Root = createBrowserRouter([
           path:'scholarshipDetails/:_id',
           element:<ScholarshipDetails></ScholarshipDetails>
         },
+        {
+          path:'payment/:_id',
+          element:<PaymentLayout></PaymentLayout>
+       },
         {
           path:'userdashboard',
           element: <Private><UserDashboard></UserDashboard></Private>,
