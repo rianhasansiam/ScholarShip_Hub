@@ -14,6 +14,7 @@ import MyProfile from "./Pages/UserDashboard/MyProfile";
 import MyApplication from "./Pages/UserDashboard/MyApplication";
 import MyReviews from "./Pages/UserDashboard/MyReviews";
 import PaymentLayout from "./Pages/PaymentLayout";
+import ApplicationForm from "./Components/ApplicationForm";
 
 
 
@@ -56,8 +57,14 @@ const Root = createBrowserRouter([
         },
         {
           path:'payment/:_id',
-          element:<PaymentLayout></PaymentLayout>
+          element:<PaymentLayout></PaymentLayout>,
+        
        },
+       {
+        path:'application-form/:_id',
+        element:<ApplicationForm></ApplicationForm>
+      
+     },
         {
           path:'userdashboard',
           element: <Private><UserDashboard></UserDashboard></Private>,

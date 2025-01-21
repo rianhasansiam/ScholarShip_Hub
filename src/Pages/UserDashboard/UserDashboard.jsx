@@ -10,7 +10,7 @@ const UserDashboard = props => {
   };
 
   return (
-    <div className="dashboard-container flex h-screen bg-gray-100">
+    <div className="dashboard-container flex h-screen bg-gray-100 ">
 
       {/* Sidebar */}
       <aside className={`sidebar bg-[#1A1A2E] text-white ${isMenuOpen ? 'block' : 'hidden'} md:block w-64 md:w-1/7 h-full fixed md:static top-0 left-0 z-50 transition-transform`}>
@@ -64,7 +64,7 @@ const UserDashboard = props => {
       </aside>
 
       {/* Main content */}
-      <div className="flex-1  p-6 ">
+      <div className="flex-1   ">
         {/* Navbar for mobile */}
         <header className="flex justify-between items-center md:hidden">
           <h1 className="text-2xl font-bold text-[#1A1A2E]">
@@ -72,7 +72,7 @@ const UserDashboard = props => {
           </h1>
           <button
             onClick={toggleMenu}
-            className="text-2xl text-[#ff5202] focus:outline-none"
+            className="text-2xl text-[#ff5202] focus:outline-none mr-2"
           >
             ☰
           </button>

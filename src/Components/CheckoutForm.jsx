@@ -129,8 +129,11 @@
 import React, { useState, useEffect } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ _id, application_fees }) => {
+  const navigate = useNavigate()
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState('');
@@ -187,13 +190,44 @@ const CheckoutForm = ({ _id, application_fees }) => {
       // Payment succeeded
       console.log('Payment succeeded:', paymentIntent);
       setIsLoading(false);
+      navigate(`/application-form/${_id}`)
       // You can now handle post-payment actions, like storing payment info in the database
     }
   };
+
+
+  const showConfirmationDialog = (event) => {
+    event.preventDefault();
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You are about to pay $${application_fees}.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, pay now!',
+      cancelButtonText: 'No, cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If the user confirms the payment, submit the form
+        handleSubmit(event);
+      } else {
+        // Handle cancelation if needed
+        console.log('Payment canceled');
+      }
+    });
+  };
+
+
+
 //  console.log('render hoise 2')
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={showConfirmationDialog}>
       <CardElement options={{ style: { base: { fontSize: '16px' } } }} />
+
+
+      
       <button type="submit" disabled={!stripe || !clientSecret || isLoading} className="btn bg-black text-white mt-4 border-black px-10 ">
         {isLoading ? 'Processing...' : `Pay $${application_fees}`}
       </button>

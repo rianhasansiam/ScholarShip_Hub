@@ -90,7 +90,7 @@ const ScholarshipDetails = () => {
             </p>
             <p>
               <span className="font-semibold">Application Fees: </span>
-              {application_fees}
+              ${application_fees}
             </p>
             {stipend && (
               <p>

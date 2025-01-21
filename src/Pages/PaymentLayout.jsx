@@ -136,7 +136,7 @@
 
 
 import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAllDataFetch from '../hooks/useAllDataFetch';
 import PaymentPage from './PaymentPage';
 import { contextData } from '../Contex';
@@ -158,6 +158,13 @@ const PaymentLayout = () => {
   if (isPending) {
     return <div>Loading...</div>;
   }
+ 
+   
+
+      const navigate = useNavigate()
+
+
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200">
@@ -167,7 +174,7 @@ const PaymentLayout = () => {
         {/* Product details on the left */}
         <div className="w-1/2 p-8 border-r">
           <button className="text-lg mb-4 text-gray-500">
-            <i className="fas fa-arrow-left"></i>
+            <button onClick={()=>navigate(-1) }><i className="fas fa-arrow-left"></i></button>
           </button>
           <div className="text-2xl font-bold mb-2">{university_name}</div>
           <div className="flex items-center mb-4">

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-gray-800 text-white py-10 ">
       <div className="container mx-auto px-6">
         {/* Logo and Website Info */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
+          <div className="flex items-center mb-4 sm:mb-0">
             <img
               src={"logo.png"} // Replace with your logo image path
               alt="Website Logo"
@@ -15,11 +15,10 @@ const Footer = () => {
             />
             <h2 className="text-2xl font-bold">Scholarship Hub</h2>
           </div>
-          {/* <p className="text-gray-400 text-sm">&copy; 2025 Scholarship Hub. All Rights Reserved.</p> */}
         </div>
 
         {/* Footer Navigation Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div>
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul>

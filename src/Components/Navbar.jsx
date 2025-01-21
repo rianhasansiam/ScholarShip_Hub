@@ -33,7 +33,7 @@ const {signoutHandle, userData, picture, name, userRole}= useContext(contextData
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-semibold">
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[90] mt-3 w-52 p-2 shadow font-semibold">
 
             <li><NavLink to="/" className="nav-item">Home</NavLink></li>
             <li><NavLink to="/allscholarship" className="nav-item">All Scholarship</NavLink></li>
