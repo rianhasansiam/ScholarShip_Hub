@@ -15,8 +15,8 @@ const MyApplication = () => {
       <span>Loading...</span>
     </div>
   ) : (
-    <div className="w-full overflow-x-auto">
-      <table className="min-w-[800px] w-full table-auto bg-white border divide-y divide-gray-200 text-left">
+    <div className="w-full ">
+      <table className="min-w-[800px]  w-full table-auto bg-white border divide-y divide-gray-200 text-left">
         <thead className="bg-gray-100">
           <tr>
             <th className="px-4 py-2 text-xs sm:text-sm md:text-base">University Name</th>
@@ -32,7 +32,7 @@ const MyApplication = () => {
         </thead>
         <tbody className="divide-y divide-gray-200">
           {tanstechData.map((application) => (
-            <EachMyApplication key={application._id} application={application} />
+            <EachMyApplication key={application._id} application={application} refetch={refetch} />
           ))}
         </tbody>
       </table>

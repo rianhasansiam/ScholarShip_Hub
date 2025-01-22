@@ -2,13 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAllDataFetch from '../hooks/useAllDataFetch';
+import { useNavigate } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
+import AddReviewButton from './AddReviewButton';
 
-const EachMyApplication = ({ application }) => {
-  const [scholarshipDetails, isPending, refetch] = useAllDataFetch(application?.scholarshipId);
+const EachMyApplication = ({ application, refetch }) => {
+  const [scholarshipDetails, isPending] = useAllDataFetch(application?.scholarshipId);
+
+  const navigate= useNavigate()
 
   const handleEditClick = (application) => {
     if (application.status === 'pending') {
       // Edit functionality
+      navigate(`/userdashboard/editApplication/${application?._id}`)
+      // console.log('hii edit')
     } else {
       Swal.fire({
         icon: 'warning',
@@ -18,7 +25,10 @@ const EachMyApplication = ({ application }) => {
     }
   };
 
+
+
   const handleCancelClick = (applicationId) => {
+    console.log(applicationId)
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -30,7 +40,7 @@ const EachMyApplication = ({ application }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.post(`/api/cancel-application/${applicationId}`);
+          const res= await axios.delete(`http://localhost:5000/cancel-application/${applicationId}`);
           Swal.fire('Cancelled!', 'Your application has been canceled.', 'success');
           refetch(); // Optional refresh after cancel
         } catch (error) {
@@ -48,6 +58,7 @@ const EachMyApplication = ({ application }) => {
   const [applicationFees, setApplicationFees] = useState('');
   const [serviceCharge, setServiceCharge] = useState('');
   const [status, setStatus] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (application) {
@@ -74,13 +85,24 @@ const EachMyApplication = ({ application }) => {
       <td className="px-4 py-2">{status}</td>
       <td className="px-4 py-2">
         <div className="dropdown dropdown-bottom dropdown-end">
-          <div tabIndex={0} role="button" className="btn m-1 bg-[#ff5202] text-white">Actions</div>
-          <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow gap-3">
+        {showModal && <AddReviewButton application={application} showModal={showModal} setShowModal={setShowModal}  ></AddReviewButton>}
+            <a id='y-anchor-element'>
+
+
+          <div id='y-anchor-element' tabIndex={0} role="button" className="btn m-1 bg-[#ff5202] text-white">Actions</div>
+            </a>
+
+            <Tooltip
+  anchorSelect="#y-anchor-element"
+  content="scroll Down"
+/>
+ 
+        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow gap-3 ">
             <li>
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded mr-2 block"
                 onClick={() => handleEditClick(application)}
-                disabled={application.status !== 'pending'}
+                // disabled={application.status !== 'pending'}
               >
                 Edit
               </button>
@@ -88,7 +110,7 @@ const EachMyApplication = ({ application }) => {
             <li>
               <button
                 className="bg-green-500 text-white px-4 py-2 rounded mr-2 block"
-                onClick={() => { /* Handle details */ }}
+                onClick={() => navigate(`/scholarshipDetails/${scholarshipDetails?._id}`)}
               >
                 Details
               </button>
@@ -104,13 +126,21 @@ const EachMyApplication = ({ application }) => {
             <li>
               <button
                 className="bg-yellow-500 text-white px-4 py-2 rounded block"
-                onClick={() => { /* Handle review */ }}
+                // onClick={() => navigate('/add-review')}
+                onClick={() => setShowModal(true)}
               >
                 Add Review
               </button>
+
+           
             </li>
           </ul>
+
+
+
         </div>
+
+
       </td>
     </tr>
   );

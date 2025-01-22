@@ -2,13 +2,16 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import useAllDataFetch from '../hooks/useAllDataFetch'
 import { contextData } from '../Contex'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import ReviewerCard from '../Components/ReviewerCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Loading from './Loading'
 
 const ScholarshipDetails = () => {
 
+
+  const navigate= useNavigate()
+  
   const locationPath = useLocation()
   // console.log()
 
@@ -106,8 +109,11 @@ const ScholarshipDetails = () => {
           </div>
         </div>
 
-        <div className="mt-8 flex justify-end">
-          <Link to={`/payment/${_id}`} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+        <div className="mt-8 flex justify-between">
+          <button onClick={()=>navigate(-1)}  className="px-6 py-2 bg-[#e73b3b] text-white rounded-lg hover:bg-[#e95252]">
+            back
+          </button>
+          <Link to={`/payment/${_id}`} className="px-6 py-2 bg-[#ff5202] text-white rounded-lg hover:bg-[#f18756]">
             Apply Scholarship
           </Link>
         </div>

@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import { contextData } from '../../Contex';
+import Loading from '../Loading';
 
-const UserDashboard = props => {
+const UserDashboard = () => {
+
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen); // Toggle the menu visibility
   };
+
+
+
 
   return (
     <div className="dashboard-container flex h-screen bg-gray-100 ">

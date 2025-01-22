@@ -15,6 +15,8 @@ import MyApplication from "./Pages/UserDashboard/MyApplication";
 import MyReviews from "./Pages/UserDashboard/MyReviews";
 import PaymentLayout from "./Pages/PaymentLayout";
 import ApplicationForm from "./Components/ApplicationForm";
+import AddReviewButton from "./Components/AddReviewButton";
+import EditScholarshipApplication from "./Components/EditScholarshipApplication ";
 
 
 
@@ -80,7 +82,11 @@ const Root = createBrowserRouter([
             {
               path:'myreviews',
               element:<MyReviews></MyReviews>
-            }
+            },
+            {
+              path:'editApplication/:id',
+              element:<EditScholarshipApplication></EditScholarshipApplication>
+            },
           ]
         },
         {
