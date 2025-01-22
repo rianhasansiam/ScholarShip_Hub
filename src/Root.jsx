@@ -17,6 +17,11 @@ import PaymentLayout from "./Pages/PaymentLayout";
 import ApplicationForm from "./Components/ApplicationForm";
 import AddReviewButton from "./Components/AddReviewButton";
 import EditScholarshipApplication from "./Components/EditScholarshipApplication ";
+import ModeratorDashboard from "./Pages/ModeratorDashboard/ModeratorDashboard";
+import ManageScholarships from "./Pages/ModeratorDashboard/ManageScholarships";
+import AllReviews from "./Pages/ModeratorDashboard/AllReviews";
+import AllAppliedScholarship from "./Pages/ModeratorDashboard/AllAppliedScholarship";
+import AddScholarship from "./Pages/ModeratorDashboard/AddScholarship";
 
 
 
@@ -88,11 +93,39 @@ const Root = createBrowserRouter([
               element:<EditScholarshipApplication></EditScholarshipApplication>
             },
           ]
-        },
-        {
-          path:'admindashboard',
-          element: <AdminDashboard></AdminDashboard>
-        }
+      },
+      {
+        path:'admindashboard',
+        element: <AdminDashboard></AdminDashboard>,
+        children:[]
+      },
+      {
+        path:'moderatordashboard',
+        element: <Private><ModeratorDashboard></ModeratorDashboard></Private>,
+        children:[
+          {
+            path:'myprofile',
+            element:<MyProfile></MyProfile>
+          },
+          {
+            path:'managescholarships',
+            element:<ManageScholarships></ManageScholarships>
+          },
+          {
+            path:'allreviews',
+            element:<AllReviews></AllReviews>
+          },
+          {
+            path:'allappliedscholarship',
+            element:<AllAppliedScholarship></AllAppliedScholarship>
+          },
+          {
+            path:'addscholarship',
+            element:<AddScholarship></AddScholarship>
+          },
+        ]
+      }
+       
       ]
     },
   ]);

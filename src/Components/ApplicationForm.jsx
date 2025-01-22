@@ -25,7 +25,7 @@ const ApplicationForm = () => {
       try {
         // Fetch user's user _id
         const res = await axios.get(`http://localhost:5000/userInfo?email=${userData?.email}`);
-        setuser_id(res.data[0]._id);
+        setuser_id(res.data._id);
       } catch (error) {
         console.error("Error fetching data", error);
       }

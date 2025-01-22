@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useAllDataFetch from '../hooks/useAllDataFetch'
 import { contextData } from '../Contex'
@@ -13,16 +13,23 @@ const ScholarshipDetails = () => {
   const navigate= useNavigate()
   
   const locationPath = useLocation()
-  // console.log()
-
+  
   const _id = locationPath.pathname.split('/')[2]
 
-  const [scholarshipDetails, isPending] = useAllDataFetch(_id)
+  const [scholarshipDetails, isPending,refetch] = useAllDataFetch(_id)
 
+  // useEffect(()=>{
+  //   refetch()
+  // },[])
+  
+
+
+  
   // console.log(scholarshipDetails)
   // console.log(_id)
 
-
+  // console.log()
+  
   if (isPending) {
     return <Loading></Loading>;
   }
@@ -77,7 +84,7 @@ const ScholarshipDetails = () => {
             </p>
             <p>
               <span className="font-semibold">Location: </span>
-              {university_location.city}, {university_location.country}
+              {university_location?.city}, {university_location?.country}
             </p>
             <p>
               <span className="font-semibold">Application Deadline: </span>
@@ -120,9 +127,9 @@ const ScholarshipDetails = () => {
 
         {/* Reviews Section */}
         <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-6">Reviews ({reviewer.length})</h2>
+          <h2 className="text-2xl font-bold mb-6">Reviews ({reviewer?.length})</h2>
           <div className="space-y-4 mb-6">
-            {reviewer.length>1?
+            {reviewer?.length>1?
             <Swiper
             spaceBetween={20}
             slidesPerView={1}
@@ -134,7 +141,7 @@ const ScholarshipDetails = () => {
               disableOnInteraction: false, // Keep autoplay running after user interaction
             }}
           >
-            {reviewer.length > 0 ? (
+            {reviewer?.length > 0 ? (
               reviewer.map((review, index) => (
                 <SwiperSlide key={index}>
                   <ReviewerCard review={review} />
@@ -144,7 +151,7 @@ const ScholarshipDetails = () => {
               <p className="text-gray-500">No reviews yet.</p>
             )}
           </Swiper>:<div>
-          {reviewer.length > 0 ? (
+          {reviewer?.length > 0 ? (
               reviewer.map((review, index) => (
                 <SwiperSlide key={index}>
                   <ReviewerCard review={review} />
