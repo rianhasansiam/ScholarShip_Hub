@@ -17,7 +17,7 @@ const AddReviewButton = ({ application, setShowModal, showModal }) => {
     
     // Create the review object
     const reviewData = {
-        schorshipId: application._id,
+        applicationId: application._id,
       scholarshipName: application?.name,
       universityName: application?.universityName,
       universityId: application?.universityId,
