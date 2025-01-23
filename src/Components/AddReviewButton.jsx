@@ -3,10 +3,10 @@ import React, { useContext, useState } from 'react';
 import { contextData } from '../Contex';
 import axios from 'axios';
 
-const AddReviewButton = ({ application, setShowModal, showModal }) => {
+const AddReviewButton = ({ application, setShowModal, showModal, scholarshipDetails }) => {
 
 
-    
+    // console.log(application)
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const { userData } = useContext(contextData); // Logged in user info from auth context
@@ -17,7 +17,9 @@ const AddReviewButton = ({ application, setShowModal, showModal }) => {
     
     // Create the review object
     const reviewData = {
-        applicationId: application._id,
+      scholarshipId:scholarshipDetails?._id,
+        applicationId: application?._id,
+        subjectCategory: application?.subjectCategory,
       scholarshipName: application?.name,
       universityName: application?.universityName,
       universityId: application?.universityId,

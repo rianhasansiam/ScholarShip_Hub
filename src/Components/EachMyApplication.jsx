@@ -9,6 +9,8 @@ import AddReviewButton from './AddReviewButton';
 const EachMyApplication = ({ application, refetch }) => {
   const [scholarshipDetails, isPending] = useAllDataFetch(application?.scholarshipId);
 
+  // console.log(scholarshipDetails)
+
   const navigate= useNavigate()
 
   const handleEditClick = (application) => {
@@ -85,7 +87,7 @@ const EachMyApplication = ({ application, refetch }) => {
       <td className="px-4 py-2">{status}</td>
       <td className="px-4 py-2">
         <div className="dropdown dropdown-bottom dropdown-end">
-        {showModal && <AddReviewButton application={application} showModal={showModal} setShowModal={setShowModal}  ></AddReviewButton>}
+        {showModal && <AddReviewButton application={application} showModal={showModal} setShowModal={setShowModal}  scholarshipDetails={scholarshipDetails}></AddReviewButton>}
             <a id='y-anchor-element'>
 
 
