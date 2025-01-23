@@ -10,25 +10,29 @@ import ModaAllScholarship from './ModaAllScholarship';
 
 const ManageScholarships = () => {
   // const [allscholarshipData, isPending, refetch] = useAllScholarshipData()
+  const [allscholarshipData, isLoading, error, refetch] = useAllScholarshipData()
 
-const [loading, setLoading]= useState(false)
-  const [renderScholarship, setRenderScholarship] = useState([]);
+//   console.log(allscholarshipData)
+
+// const [loading, setLoading]= useState(false)
+//   const [renderScholarship, setRenderScholarship] = useState([]);
 
 
 
 
-useEffect(()=>{
-  setLoading(true)
-  const fetchingData=async()=>{
-    const res= await axios.get('http://localhost:5000/allscholarship')
-    setRenderScholarship(res.data)
-    // console.log(res.data)
-    setLoading(false)
+// useEffect(()=>{
+//   setLoading(true)
+//   const fetchingData=async()=>{
+//     const res= await axios.get('http://localhost:5000/allscholarship')
+//     setRenderScholarship(res.data)
+//     // console.log(res.data)
+//     setLoading(false)
     
-  }
-  fetchingData()
+//   }
+//   fetchingData()
+//   refetch()
 
-},[])
+// },[])
 
 
   // const [selectedScholarship, setSelectedScholarship] = useState(null);
@@ -88,10 +92,10 @@ useEffect(()=>{
   return (
 
     <>
-    {loading?(<Loading></Loading>)
+    {isLoading?(<Loading></Loading>)
     : 
     ( <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Manage Scholarships</h2>
+      <h2 className="text-2xl font-bold mb-4">Manage Scholarships ({allscholarshipData?.length})</h2>
       <table className="min-w-full bg-white  ">
         <thead>
           <tr>
@@ -104,11 +108,17 @@ useEffect(()=>{
           </tr>
         </thead>
         <tbody>
-          {renderScholarship.map(scholarship => (
-           <ModaAllScholarship key={scholarship._id} scholarship={scholarship} ></ModaAllScholarship>
-          ))
-          }
-        </tbody>
+  {allscholarshipData && allscholarshipData.length > 0 ? (
+    allscholarshipData.map((scholarship) => (
+      <ModaAllScholarship key={scholarship._id} scholarship={scholarship} refetch={refetch}></ModaAllScholarship>
+    ))
+  ) : (
+    <tr>
+      <Loading></Loading>
+    </tr>
+  )}
+</tbody>
+
       </table>
 
 
