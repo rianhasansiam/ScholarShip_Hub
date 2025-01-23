@@ -66,8 +66,8 @@ if(user){
   const name=user.displayName
   const email=user.email
   const picture=user.photoURL
-  const userDataSend={name, email, picture, userRole}
-  console.log(userDataSend, 'send this')
+  const userDataSend={name, email, picture}
+  // console.log(userDataSend, 'send this')
 
 
      axios.post('http://localhost:5000/userData', userDataSend )
@@ -128,6 +128,7 @@ if(user){
         setName(null)
         setPicture('https://img.icons8.com/?size=100&id=ywULFSPkh4kI&format=png&color=000000')
         setLoading(false);
+        setuserRole('Member')
       })
       .catch(() => {
         setLoading(false);

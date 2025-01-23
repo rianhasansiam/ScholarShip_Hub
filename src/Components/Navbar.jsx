@@ -54,8 +54,11 @@ const {signoutHandle, userData, picture, name, userRole}= useContext(contextData
 
           <li><NavLink to="/" className="nav-item">Home</NavLink></li>
           <li><NavLink to="/allscholarship" className="nav-item">All Scholarship</NavLink></li>
+
+          
         {userData?(  userRole==='Member'? <li><NavLink to="/userdashboard/myprofile" className="nav-item">User Dashboard</NavLink></li>:''):''}
         {userData?(  userRole==='Moderator'? <li><NavLink to="/moderatordashboard/myprofile" className="nav-item">Moderator Dashboard</NavLink></li>:''):''}
+        {userData?(  userRole==='Admin'? <li><NavLink to="/admindashboard/myprofile" className="nav-item">Admin Dashboard</NavLink></li>:''):''}
           
           <li> <NavLink to="/aboutUs" className="nav-item">About Us</NavLink></li>
 

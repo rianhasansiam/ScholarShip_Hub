@@ -30,6 +30,13 @@ const {userData}=useContext(contextData)
  const [submit, setSubmit] = useState('Add Application'); 
  const [isSubmitting, setIsSubmitting] = useState(false); 
 
+ const handleDateChange = (e) => {
+  const date = new Date(e.target.value);
+  const formattedDate = date.toISOString(); // Converts to '2025-01-23T19:35:26.057Z' format
+  setApplication_deadline(formattedDate);
+};
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -286,17 +293,19 @@ const {userData}=useContext(contextData)
 
 
 
-      <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Application Deadline</label>
-          <input
-            type="text"
-            placeholder="Application Deadline"
-            value={application_deadline}
-            onChange={(e) => setApplication_deadline(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
+        <div className="mb-4">
+      <label className="block text-sm font-medium text-gray-700 mb-1">Application Deadline</label>
+      <input
+        type="date"
+        onChange={handleDateChange}
+        required
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+      />
+      {/* Show the formatted date */}
+      <p>Formatted Deadline: {new Date(application_deadline).toLocaleDateString('en-US')}</p>
+
+    </div>
+
 
 
 

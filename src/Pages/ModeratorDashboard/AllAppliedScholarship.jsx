@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import UseAllAppliedScholarship from '../../hooks/UseAllAppliedScholarship';
@@ -8,39 +8,43 @@ const AllAppliedScholarships = () => {
   const [feedback, setFeedback] = useState('');
   const [status, setStatus] = useState('');
 
-  // console.log(status)
+  const [sortOption, setSortOption] = useState('');
+  const [sortedScholarships, setSortedScholarships] = useState([]);
 
+  const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholarship();
 
+  // useEffect to handle sorting logic
+  useEffect(() => {
+    let sorted = [...allAppliedScholarship];
+    // console.log(sorted)
+    if (sortOption === 'appliedDate') {
+      sorted.sort((a, b) => new Date(b.dateApplied) - new Date(a.dateApplied));
+    } else if (sortOption === 'scholarshipDeadline') {
+      sorted.sort((a, b) => new Date(b.application_deadline) - new Date(a.application_deadline));
+    }
+    setSortedScholarships(sorted);
+  }, [sortOption, allAppliedScholarship]);
 
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
 
-const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholarship()
-
-
-
-// console.log(selectedApplication)
-
-
-  // Handle opening the details modal
   const handleDetails = (application) => {
     setSelectedApplication(application);
     document.getElementById('details_modal').showModal();
-
   };
 
-  // Handle opening the feedback modal
   const handleFeedback = (application) => {
     setSelectedApplication(application);
     document.getElementById('feedback_modal').showModal();
-  
   };
 
-  // Submit feedback
   const handleSubmitFeedback = () => {
     axios.put(`http://localhost:5000/submit-feedback/${selectedApplication._id}`, { feedback })
       .then(() => {
         Swal.fire('Feedback Submitted!', 'The feedback has been added successfully.', 'success');
         document.getElementById('feedback_modal').close();
-        setFeedback('')
+        setFeedback('');
       })
       .catch((err) => {
         console.error('Error submitting feedback:', err);
@@ -48,16 +52,11 @@ const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholars
       });
   };
 
-
-
-  // Cancel application
   const handleCancelApplication = (applicationId) => {
     axios.put(`http://localhost:5000/cancel-application/${applicationId}`)
       .then(() => {
         Swal.fire('Application Cancelled', 'The application has been cancelled.', 'success');
-        refetch()
-        // Update the status to rejected in the UI (assuming you store the state for the list of applications)
-        // For example: update the application status in the appliedScholarships array here
+        refetch();
       })
       .catch((err) => {
         console.error('Error canceling application:', err);
@@ -65,13 +64,22 @@ const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholars
       });
   };
 
-  
-
-
-
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">All Applied Scholarships ({allAppliedScholarship.length})</h2>
+      <h2 className="text-2xl font-bold mb-4">All Applied Scholarships ({sortedScholarships.length})</h2>
+
+      {/* Sorting/Filtering Dropdown */}
+      <div className="flex justify-center mb-4">
+        <select
+          className="border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202]"
+          value={sortOption}
+          onChange={handleSortChange}
+        >
+          <option value="">Sort By</option>
+          <option value="appliedDate">Applied Date</option>
+          <option value="scholarshipDeadline">Scholarship Deadline</option>
+        </select>
+      </div>
 
       <table className="min-w-full bg-white border">
         <thead>
@@ -84,7 +92,7 @@ const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholars
           </tr>
         </thead>
         <tbody>
-          {allAppliedScholarship.map(application => (
+          {sortedScholarships.map(application => (
             <tr key={application._id}>
               <td className="border px-4 py-2">{application.universityName}</td>
               <td className="border px-4 py-2">{application.applyingDegree}</td>
@@ -115,11 +123,6 @@ const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholars
         </tbody>
       </table>
 
-
-
-
-
-
       {/* Details Modal */}
       <dialog id="details_modal" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
@@ -129,7 +132,6 @@ const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholars
               <p><strong>University:</strong> {selectedApplication.universityName}</p>
               <p><strong>Degree:</strong> {selectedApplication.applyingDegree}</p>
               <p><strong>Scholarship Category:</strong> {selectedApplication.scholarshipCategory}</p>
-              {/* You can add more details here */}
               <form method="dialog">
                 <button className="btn bg-red-500 text-white mt-4">Close</button>
               </form>
@@ -161,9 +163,6 @@ const [allAppliedScholarship, isLoading, error, refetch] = UseAllAppliedScholars
           </div>
         </div>
       </dialog>
-
-
-
     </div>
   );
 };

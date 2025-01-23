@@ -93,6 +93,7 @@ const ApplicationForm = () => {
         user_id,
         scholarshipId: _id,
         dateApplied: new Date(),
+        application_deadline:scholarshipDetails?.application_deadline
       };
       
 
