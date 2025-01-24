@@ -6,7 +6,7 @@ The **Scholarship Management System** is a web application designed to help stud
 
 ## Live URL
 
-[Visit the live project](https://your-live-url.com)
+[Scholarship Hub](https://assignment-12-b3c0e.web.app)
 
 ## Key Features
 
