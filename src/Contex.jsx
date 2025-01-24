@@ -25,13 +25,14 @@ const Contex = ({ children }) => {
 
     const fetchData = async () => {
       try {
-
+        setLoading(true)
         if(userData){
 
           // Fetch user's user Role
           const res = await axios.get(`http://localhost:5000/userInfo?email=${userData?.email}`);
           // console.log(res.data)
           setuserRole(res.data?.userRole);
+          setLoading(false)
 
         }
       } catch (error) {

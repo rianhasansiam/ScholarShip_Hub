@@ -76,7 +76,7 @@ const {signoutHandle, userData, picture, name, userRole}= useContext(contextData
 
         <div tabIndex={0} role="button" className="flex items-center space-x-4 ">
           <img
-            src={picture || 'https://via.placeholder.com/50'} // Fallback image if no profile picture
+            src={picture || 'https://img.icons8.com/?size=100&id=23265&format=png&color=000000'} // Fallback image if no profile picture
             alt="Profile"
             className="w-10 h-10 rounded-full cursor-pointer"
 
