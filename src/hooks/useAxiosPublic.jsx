@@ -4,7 +4,7 @@ import { contextData } from '../Contex';
 
 // Axios instance for public use
 const axiosInstance = axios.create({
-  baseURL: 'https://assignment-12-server-ruddy-eight.vercel.app', // Replace with your public API base URL
+  baseURL: 'https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app', // Replace with your public API base URL
   // timeout: 1000,                    // Optional: Set a timeout if needed
 });
 

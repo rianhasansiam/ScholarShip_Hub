@@ -15,7 +15,7 @@ const ScolarshipCard = ({ topeachcard }) => {
 
     const reviewFetch = async () => {
 
-      const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/each-user-reviews/${_id}`)
+      const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/each-user-reviews/${_id}`)
       setReviewer(res.data)
 
 

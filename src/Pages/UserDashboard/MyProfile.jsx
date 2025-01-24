@@ -38,7 +38,7 @@ const MyProfile = () => {
 
       const imageUrl = imageRes.data.data.url;
       setPicture(imageUrl)
-      console.log(imageUrl);
+     
 
       if (userData) {
 

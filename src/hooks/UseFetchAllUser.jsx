@@ -10,7 +10,7 @@ const useFetchAllUser = (_id) => {
     queryKey: ['details'],  //unique  akek joner email aa akek joner jonno cach korbe
     queryFn: async () => {
       try {
-        const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/get-all-users`, {
+        const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/get-all-users`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('access-token')}`
           }

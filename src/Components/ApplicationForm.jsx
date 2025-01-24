@@ -24,7 +24,7 @@ const ApplicationForm = () => {
     const fetchData = async () => {
       try {
         // Fetch user's user _id
-        const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/userInfo?email=${userData?.email}`);
+        const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/userInfo?email=${userData?.email}`);
         setuser_id(res.data._id);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -98,7 +98,7 @@ const ApplicationForm = () => {
 
 
       // Submit the complete form data to your API
-      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/apply-scholarship', formData);
+      const response = await axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/apply-scholarship', formData);
 
       if (response.status === 200) {
         Swal.fire('Application Submitted!', 'Your scholarship application has been submitted successfully.', 'success');

@@ -31,9 +31,10 @@ const Contex = ({ children }) => {
         if (userData) {
 
           // Fetch user's user Role
-          const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/userInfo?email=${userData?.email}`);
+          const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/userInfo?email=${userData?.email}`);
 
           setuserRole(res.data?.userRole);
+      
           setLoading(false)
 
         }
@@ -69,12 +70,14 @@ const Contex = ({ children }) => {
           const name = user.displayName
           const email = user.email
           const picture = user.photoURL
-          const userDataSend = { name, email, picture }
+          const userRole = userRole
+          
+          const userDataSend = { name, email, picture, userRole }
 
 
 
-          axios.post('https://assignment-12-server-ruddy-eight.vercel.app/userData', userDataSend)
-         
+          axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/userData', userDataSend)
+
         }
 
 
@@ -92,7 +95,7 @@ const Contex = ({ children }) => {
 
   const authenticateUser = async (email) => {
     try {
-      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/jwt', { email });
+      const response = await axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/jwt', { email });
 
       // Assuming the token is in the response body
       const token = response.data.token; // Adjust according to your API response structure
@@ -100,7 +103,7 @@ const Contex = ({ children }) => {
       // Store the token in localStorage
       localStorage.setItem('access-token', token);
 
-     
+
     } catch (error) {
       console.error('Authentication failed:', error);
     }
@@ -121,7 +124,7 @@ const Contex = ({ children }) => {
         if (user.photoURL) {
           setPicture(user?.photoURL)
         }
-      
+
 
 
         authenticateUser(user?.email)
@@ -131,7 +134,7 @@ const Contex = ({ children }) => {
         setLoading(false);
 
       } else {
-        
+
         localStorage.removeItem('access-token')
 
       }

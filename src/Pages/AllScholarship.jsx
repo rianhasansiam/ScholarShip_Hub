@@ -18,7 +18,7 @@ const AllScholarship = (props) => {
   const fetchScholarships = async (page, query = '') => {
     setLoading(true);
     try {
-      const response = await axios.get('https://assignment-12-server-ruddy-eight.vercel.app/all-Scholarships', {
+      const response = await axios.get('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/all-Scholarships', {
         params: { page, limit: 6, search: query }, // Pass search query as a parameter
       });
       setAllScholarships(response.data.scholarships);

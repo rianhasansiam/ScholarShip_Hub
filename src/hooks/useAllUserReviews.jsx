@@ -12,7 +12,7 @@ const useAllUserReviews = () => {
     queryKey: ['details'],  // Adding email to queryKey for cache invalidation per user
     queryFn: async () => {
       if (userData?.email) {
-        const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/all-user-reviews`);
+        const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/all-user-reviews`);
         return res.data;
       }
       return [];  // Return an empty array if user email is not available

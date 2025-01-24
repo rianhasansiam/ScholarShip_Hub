@@ -24,7 +24,7 @@ const SignUp = () => {
 
 
 
-    const res = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/userData', userDataSend)
+    const res = await axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/userData', userDataSend)
  
 
 
@@ -86,7 +86,7 @@ const SignUp = () => {
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-      //  console.log(user)
+     
 
 
 
@@ -102,7 +102,7 @@ const SignUp = () => {
               datasendHandle()
 
 
-              console.log('Profile updated!');
+            
             })
             .catch((error) => {
               console.error('Error updating profile:', error);

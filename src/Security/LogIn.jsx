@@ -20,7 +20,7 @@ const LogIn = () => {
     // Handle login logic here
   
 
-    navigation(redirectPath)
+    
 
 
 
@@ -28,6 +28,7 @@ const LogIn = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        navigation(redirectPath)
 
 
 
@@ -35,6 +36,13 @@ const LogIn = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Something is Wrong',
+          text: 'Login Failed',
+          confirmButtonText: 'OK',
+        });
 
 
       });

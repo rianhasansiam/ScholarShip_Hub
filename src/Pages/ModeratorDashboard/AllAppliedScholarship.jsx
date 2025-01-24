@@ -40,7 +40,7 @@ const AllAppliedScholarships = () => {
   };
 
   const handleSubmitFeedback = () => {
-    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/submit-feedback/${selectedApplication._id}`, { feedback })
+    axios.put(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/submit-feedback/${selectedApplication._id}`, { feedback })
       .then(() => {
         Swal.fire('Feedback Submitted!', 'The feedback has been added successfully.', 'success');
         document.getElementById('feedback_modal').close();
@@ -53,7 +53,7 @@ const AllAppliedScholarships = () => {
   };
 
   const handleCancelApplication = (applicationId) => {
-    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/cancel-application/${applicationId}`)
+    axios.put(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/cancel-application/${applicationId}`)
       .then(() => {
         Swal.fire('Application Cancelled', 'The application has been cancelled.', 'success');
         refetch();
