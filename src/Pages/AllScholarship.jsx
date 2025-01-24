@@ -18,7 +18,7 @@ const AllScholarship = (props) => {
   const fetchScholarships = async (page, query = '') => {
     setLoading(true);
     try {
-      const response = await axios.get('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/all-Scholarships', {
+      const response = await axios.get('https://assignment-12-server-ruddy-eight.vercel.app/all-Scholarships', {
         params: { page, limit: 6, search: query }, // Pass search query as a parameter
       });
       setAllScholarships(response.data.scholarships);
@@ -55,7 +55,7 @@ const AllScholarship = (props) => {
   return (
     <div>
       <h2 className='text-center font-bold text-4xl py-5 pt-10'>All Scholarships Circular</h2>
-      <div className="search-box flex justify-center my-4">
+      <div className="search-box flex justify-center my-4 w-[50vw] mx-auto">
         <input
           type="text"
           value={searchQuery}

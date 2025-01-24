@@ -75,7 +75,7 @@ const UserDashboard = () => {
       <div className="flex-1   ">
         {/* Navbar for mobile */}
         <header className="flex justify-between items-center md:hidden">
-          <h1 className="text-2xl font-bold text-[#1A1A2E]">
+          <h1 className="text-2xl font-bold text-[#1A1A2E] ">
             Dashboard
           </h1>
           <button

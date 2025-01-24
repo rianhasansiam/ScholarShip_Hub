@@ -31,7 +31,7 @@ const Contex = ({ children }) => {
         if (userData) {
 
           // Fetch user's user Role
-          const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/userInfo?email=${userData?.email}`);
+          const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/userInfo?email=${userData?.email}`);
 
           setuserRole(res.data?.userRole);
       
@@ -76,7 +76,7 @@ const Contex = ({ children }) => {
 
 
 
-          axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/userData', userDataSend)
+          axios.post('https://assignment-12-server-ruddy-eight.vercel.app/userData', userDataSend)
 
         }
 
@@ -95,7 +95,7 @@ const Contex = ({ children }) => {
 
   const authenticateUser = async (email) => {
     try {
-      const response = await axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/jwt', { email });
+      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/jwt', { email });
 
       // Assuming the token is in the response body
       const token = response.data.token; // Adjust according to your API response structure
@@ -109,7 +109,7 @@ const Contex = ({ children }) => {
     }
   }
 
-
+  
 
 
 

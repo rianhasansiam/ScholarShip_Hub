@@ -22,7 +22,7 @@ const ModaAllScholarship = ({ scholarship, refetch }) => {
       cancelButtonText: 'No, cancel!',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/scholarships/${scholarshipId}`)
+        axios.delete(`https://assignment-12-server-ruddy-eight.vercel.app/scholarships/${scholarshipId}`)
           .then(() => {
             Swal.fire('Deleted!', 'The scholarship has been deleted.', 'success');
             refetch()
@@ -73,7 +73,7 @@ const ModaAllScholarship = ({ scholarship, refetch }) => {
 
 
 
-    axios.put(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/scholarships/${scholarship?._id}`, updatedData)
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/scholarships/${scholarship?._id}`, updatedData)
       .then(() => {
         Swal.fire('Updated!', 'Scholarship updated successfully.', 'success');
         refetch()

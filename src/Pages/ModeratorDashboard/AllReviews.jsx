@@ -24,7 +24,7 @@ const AllReviews = () => {
       cancelButtonText: 'No, cancel!',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/delete-review/${reviewId}`)
+        axios.delete(`https://assignment-12-server-ruddy-eight.vercel.app/delete-review/${reviewId}`)
           .then(() => {
             Swal.fire('Deleted!', 'The review has been deleted.', 'success');
             refetch()

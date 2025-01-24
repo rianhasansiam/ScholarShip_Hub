@@ -32,7 +32,7 @@ const EditScholarshipApplication = () => {
   useEffect(() => {
     const email = userData?.email;
 
-    axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/edit-myApplication`, {
+    axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/edit-myApplication`, {
       params: {
         _id,
         email,
@@ -80,7 +80,7 @@ const EditScholarshipApplication = () => {
 
 
  
-    axios.put(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/edit-my-application/${_id}?email=${userData.email}`, formData)
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/edit-my-application/${_id}?email=${userData.email}`, formData)
       .then(() => {
         Swal.fire({
           title: 'Success!',

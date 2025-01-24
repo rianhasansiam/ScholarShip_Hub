@@ -8,7 +8,7 @@ const useAllScholarshipData = () => {
         queryKey: ['details'],  // Unique cache for each user based on key
         queryFn: async () => {
             try {
-                const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/allscholarship`, {
+                const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/allscholarship`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('access-token')}`
                     }

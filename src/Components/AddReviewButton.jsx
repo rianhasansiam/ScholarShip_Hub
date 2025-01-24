@@ -35,7 +35,7 @@ const AddReviewButton = ({ application, setShowModal, showModal, scholarshipDeta
 
 
     try {
-      const res = await axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/add-review', reviewData)
+      const res = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/add-review', reviewData)
     
       setShowModal(false)
     } catch (error) {

@@ -9,7 +9,7 @@ const useAllDataFetch = (_id) => {
   const { isLoading, data: scholarshipDetails = [], refetch } = useQuery({
     queryKey: ['details'],  //unique  akek joner email aa akek joner jonno cach korbe
     queryFn: async () => {
-      const res = await axios.get(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/scholarshipDetails/${_id}`)
+      const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/scholarshipDetails/${_id}`)
       return res.data
     }
   })

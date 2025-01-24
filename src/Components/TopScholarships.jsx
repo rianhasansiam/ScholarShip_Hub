@@ -18,7 +18,7 @@ const TopScholarships = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/top-Scholarships'); // Make a public API call
+        const response = await axios.get('https://assignment-12-server-ruddy-eight.vercel.app/top-Scholarships'); // Make a public API call
         setTopScholarships(response.data);
       } catch (error) {
         console.error('Error fetching public data:', error);

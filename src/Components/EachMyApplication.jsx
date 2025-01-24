@@ -42,7 +42,7 @@ const EachMyApplication = ({ application, refetch }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/cancel-application/${applicationId}`);
+          const res = await axios.delete(`https://assignment-12-server-ruddy-eight.vercel.app/cancel-application/${applicationId}`);
           Swal.fire('Cancelled!', 'Your application has been canceled.', 'success');
           refetch(); // Optional refresh after cancel
         } catch (error) {

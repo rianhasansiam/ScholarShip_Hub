@@ -85,7 +85,7 @@ const AddScholarship = () => {
 
 
       // Submit the complete form data to your API
-      const response = await axios.post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/add-scholarship', formData);
+      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/add-scholarship', formData);
 
       if (response.status === 200) {
         Swal.fire('Application Submitted!', 'Your scholarship application has been submitted successfully.', 'success');

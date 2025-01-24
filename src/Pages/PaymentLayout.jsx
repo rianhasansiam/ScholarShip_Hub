@@ -34,10 +34,10 @@ const PaymentLayout = () => {
   return (
     <div className="flex  justify-center items-center h-screen bg-gray-200">
       {/* Container for the entire checkout page */}
-      <div className="flex flex-col md:flex-row mx-auto bg-white items-center rounded-lg shadow-lg max-w-5xl w-full">
+      <div className="flex flex-col md:flex-row mx-auto bg-white items-center justify-around rounded-lg shadow-lg max-w-5xl w-full">
 
         {/* Product details on the left */}
-        <div className="w-1/2 p-8 border-r">
+        <div className="md:w-[45%] w-[80vw] p-8 border-r">
           <button className="text-lg mb-4 text-gray-500">
             <button onClick={() => navigate(-1)}><i className="fas fa-arrow-left"></i></button>
           </button>
@@ -59,7 +59,7 @@ const PaymentLayout = () => {
         </div>
 
         {/* Payment section on the right */}
-        <div className="w-1/2 p-8 bg-[#77d6f3] text-white">
+        <div className=" md:w-[45%] w-[80vw] p-8 bg-[#77d6f3] text-white">
           <div className="flex items-center justify-center mb-6">
             <h2 className="text-xl font-bold">Complete Payment</h2>
           </div>

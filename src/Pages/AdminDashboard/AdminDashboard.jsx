@@ -135,7 +135,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Main content */}
-      <div className="flex-1   ">
+      <div className="flex-1  container ">
         {/* Navbar for mobile */}
         <header className="flex justify-between items-center md:hidden">
           <h1 className="text-2xl font-bold text-[#1A1A2E]">

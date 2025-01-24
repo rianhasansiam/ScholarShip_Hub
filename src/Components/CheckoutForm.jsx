@@ -20,7 +20,7 @@ const CheckoutForm = ({ _id, application_fees }) => {
     // Fetch client secret when component mounts
 
     axios
-      .post('https://assignment-12-server-802u2ppq0-rian-hasan-siams-projects.vercel.app/create-payment-intent', {
+      .post('https://assignment-12-server-ruddy-eight.vercel.app/create-payment-intent', {
         _id,
         application_fees,
       })
