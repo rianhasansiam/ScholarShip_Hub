@@ -10,26 +10,16 @@ import Loading from './Loading'
 const ScholarshipDetails = () => {
 
 
-  const navigate= useNavigate()
-  
+  const navigate = useNavigate()
+
   const locationPath = useLocation()
-  
+
   const _id = locationPath.pathname.split('/')[2]
 
-  const [scholarshipDetails, isLoading,refetch] = useAllDataFetch(_id)
+  const [scholarshipDetails, isLoading, refetch] = useAllDataFetch(_id)
 
-  // useEffect(()=>{
-  //   refetch()
-  // },[])
-  
+ 
 
-
-  
-  // console.log(scholarshipDetails)
-  // console.log(_id)
-
-  // console.log()
-  
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -54,7 +44,6 @@ const ScholarshipDetails = () => {
     reviewer
   } = scholarshipDetails;
 
-  // const{reviewer_image,reviewer_name,review_date,rating_point,reviewer_comments}= reviewer[0]
 
 
 
@@ -117,7 +106,7 @@ const ScholarshipDetails = () => {
         </div>
 
         <div className="mt-8 flex justify-between">
-          <button onClick={()=>navigate(-1)}  className="px-6 py-2 bg-[#e73b3b] text-white rounded-lg hover:bg-[#e95252]">
+          <button onClick={() => navigate(-1)} className="px-6 py-2 bg-[#e73b3b] text-white rounded-lg hover:bg-[#e95252]">
             back
           </button>
           <Link to={`/payment/${_id}`} className="px-6 py-2 bg-[#ff5202] text-white rounded-lg hover:bg-[#f18756]">
@@ -129,37 +118,37 @@ const ScholarshipDetails = () => {
         <div className="mt-10">
           <h2 className="text-2xl font-bold mb-6">Reviews ({reviewer?.length})</h2>
           <div className="space-y-4 mb-6">
-            {reviewer?.length>1?
-            <Swiper
-            spaceBetween={20}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-            loop
-            autoplay={{
-              delay: 3000, // Time between each slide in milliseconds (3000ms = 3 seconds)
-              disableOnInteraction: false, // Keep autoplay running after user interaction
-            }}
-          >
-            {reviewer?.length > 0 ? (
-              reviewer.map((review, index) => (
-                <SwiperSlide key={index}>
-                  <ReviewerCard review={review} />
-                </SwiperSlide>
-              ))
-            ) : (
-              <p className="text-gray-500">No reviews yet.</p>
-            )}
-          </Swiper>:<div>
-          {reviewer?.length > 0 ? (
-              reviewer.map((review, index) => (
-                <SwiperSlide key={index}>
-                  <ReviewerCard review={review} />
-                </SwiperSlide>
-              ))
-            ) : (
-              <p className="text-gray-500">No reviews yet.</p>
-            )}</div>}
+            {reviewer?.length > 1 ?
+              <Swiper
+                spaceBetween={20}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                loop
+                autoplay={{
+                  delay: 3000, // Time between each slide in milliseconds (3000ms = 3 seconds)
+                  disableOnInteraction: false, // Keep autoplay running after user interaction
+                }}
+              >
+                {reviewer?.length > 0 ? (
+                  reviewer.map((review, index) => (
+                    <SwiperSlide key={index}>
+                      <ReviewerCard review={review} />
+                    </SwiperSlide>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No reviews yet.</p>
+                )}
+              </Swiper> : <div>
+                {reviewer?.length > 0 ? (
+                  reviewer.map((review, index) => (
+                    <SwiperSlide key={index}>
+                      <ReviewerCard review={review} />
+                    </SwiperSlide>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No reviews yet.</p>
+                )}</div>}
 
           </div>
         </div>

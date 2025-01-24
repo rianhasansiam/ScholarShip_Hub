@@ -13,24 +13,24 @@ const ApplicationForm = () => {
   const _id = locationPath.pathname.split('/')[2];
 
   const navigate = useNavigate()
-  
+
   // Fetch scholarship details (custom hook for fetching data)
   const [scholarshipDetails, isLoading] = useAllDataFetch(_id);
   const { userData } = useContext(contextData);
-  // console.log(userData.displayName)
-  const [user_id,setuser_id]=useState('')
-  
+
+  const [user_id, setuser_id] = useState('')
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch user's user _id
-        const res = await axios.get(`http://localhost:5000/userInfo?email=${userData?.email}`);
+        const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/userInfo?email=${userData?.email}`);
         setuser_id(res.data._id);
       } catch (error) {
         console.error("Error fetching data", error);
       }
     };
-  
+
     fetchData();
   }, [userData]);
 
@@ -43,14 +43,14 @@ const ApplicationForm = () => {
   const [sscResult, setSscResult] = useState('');
   const [hscResult, setHscResult] = useState('');
   const [studyGap, setStudyGap] = useState('No');
- 
+
 
   const universityName = scholarshipDetails.university_name;
   const scholarshipCategory = scholarshipDetails.scholarship_category;
   const subjectCategory = scholarshipDetails.subject_name;
 
-  const [isSubmitting, setIsSubmitting] = useState(false); 
-  const [submit, setSubmit] = useState('Submit Application'); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submit, setSubmit] = useState('Submit Application');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,8 +72,8 @@ const ApplicationForm = () => {
       });
 
       const imageUrl = imageRes.data.data.url;
+
       
-      console.log(imageUrl)// Get the image URL from ImgBB API
 
       // Now handle the form submission after getting the image URL
       const formData = {
@@ -93,12 +93,12 @@ const ApplicationForm = () => {
         user_id,
         scholarshipId: _id,
         dateApplied: new Date(),
-        application_deadline:scholarshipDetails?.application_deadline
+        application_deadline: scholarshipDetails?.application_deadline
       };
-      
+
 
       // Submit the complete form data to your API
-      const response = await axios.post('http://localhost:5000/apply-scholarship', formData);
+      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/apply-scholarship', formData);
 
       if (response.status === 200) {
         Swal.fire('Application Submitted!', 'Your scholarship application has been submitted successfully.', 'success');
@@ -250,12 +250,12 @@ const ApplicationForm = () => {
       </div>
 
       <button
-  type="submit"
-  className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
-   disabled={isSubmitting} // Disable the button if submitting
->
-  {submit}
-</button>
+        type="submit"
+        className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
+        disabled={isSubmitting} // Disable the button if submitting
+      >
+        {submit}
+      </button>
     </form>
   );
 };

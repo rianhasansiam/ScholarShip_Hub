@@ -11,7 +11,7 @@ const useFetchEachApplication = () => {
     queryKey: ['details', userData?.email],  // Adding email to queryKey for cache invalidation per user
     queryFn: async () => {
       if (userData?.email) {
-        const res = await axios.get(`http://localhost:5000/applied-scholarships?email=${userData?.email}`);
+        const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/applied-scholarships?email=${userData?.email}`);
         return res.data;
       }
       return [];  // Return an empty array if user email is not available

@@ -6,37 +6,37 @@ import useAllreviewsFetch from '../hooks/useAllreviewsFetch';
 const EachReview = ({ review }) => {
 
 
-const [,,refetch]= useAllreviewsFetch()
+  const [, , refetch] = useAllreviewsFetch()
 
 
-const [comment, setComment]= useState('')
-// console.log(review)
+  const [comment, setComment] = useState('')
 
-  
+
+
   // Submit the edited review
   const handleSubmitEdit = () => {
 
 
-    const newReview={
-        applicationId:review.applicationId,
-        comment:comment,
-        rating:review.rating,
-        reviewDate:review.reviewDate,
-        scholarshipName:review.scholarshipName,
-        universityName:review.universityName,
-        userEmail:review.userEmail,
-        userImage:review.userImage,
-        userName:review.userName
+    const newReview = {
+      applicationId: review.applicationId,
+      comment: comment,
+      rating: review.rating,
+      reviewDate: review.reviewDate,
+      scholarshipName: review.scholarshipName,
+      universityName: review.universityName,
+      userEmail: review.userEmail,
+      userImage: review.userImage,
+      userName: review.userName
 
     }
-    console.log(newReview)
-      document.getElementById('my_modal_5').close(); // Close modal
-    axios.put(`http://localhost:5000/edit-review/${review?._id}`, newReview)
+   
+    document.getElementById('my_modal_5').close(); // Close modal
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/edit-review/${review?._id}`, newReview)
       .then((res) => {
         Swal.fire('Updated!', 'Your review has been updated.', 'success');
         refetch()
-        console.log(res.data)
-        
+      
+
       })
       .catch(err => {
         console.error('Error updating review:', err);
@@ -58,11 +58,11 @@ const [comment, setComment]= useState('')
       cancelButtonText: 'No, cancel!',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/delete-review/${reviewId}`)
+        axios.delete(`https://assignment-12-server-ruddy-eight.vercel.app/delete-review/${reviewId}`)
           .then(() => {
             Swal.fire('Deleted!', 'Your review has been deleted.', 'success');
             refetch()
-            
+
           })
           .catch(err => {
             console.error('Error deleting review:', err);
@@ -85,7 +85,7 @@ const [comment, setComment]= useState('')
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
             onClick={() => {
-            //   setSelectedReview(review); // Set the review to be edited
+              //   setSelectedReview(review); // Set the review to be edited
               document.getElementById('my_modal_5').showModal(); // Open modal
             }}
           >

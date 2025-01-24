@@ -9,15 +9,15 @@ import AddReviewButton from './AddReviewButton';
 const EachMyApplication = ({ application, refetch }) => {
   const [scholarshipDetails, isLoading] = useAllDataFetch(application?.scholarshipId);
 
-  // console.log(scholarshipDetails)
 
-  const navigate= useNavigate()
+
+  const navigate = useNavigate()
 
   const handleEditClick = (application) => {
     if (application.status === 'pending') {
       // Edit functionality
       navigate(`/userdashboard/editApplication/${application?._id}`)
-      // console.log('hii edit')
+   
     } else {
       Swal.fire({
         icon: 'warning',
@@ -30,7 +30,7 @@ const EachMyApplication = ({ application, refetch }) => {
 
 
   const handleCancelClick = (applicationId) => {
-    console.log(applicationId)
+   
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -42,7 +42,7 @@ const EachMyApplication = ({ application, refetch }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res= await axios.delete(`http://localhost:5000/cancel-application/${applicationId}`);
+          const res = await axios.delete(`https://assignment-12-server-ruddy-eight.vercel.app/cancel-application/${applicationId}`);
           Swal.fire('Cancelled!', 'Your application has been canceled.', 'success');
           refetch(); // Optional refresh after cancel
         } catch (error) {
@@ -60,7 +60,7 @@ const EachMyApplication = ({ application, refetch }) => {
   const [applicationFees, setApplicationFees] = useState('');
   const [serviceCharge, setServiceCharge] = useState('');
   const [status, setStatus] = useState('');
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (application) {
@@ -68,7 +68,7 @@ const EachMyApplication = ({ application, refetch }) => {
       setAddress(application?.address?.country || '');
       setFeedback(application?.feedback || 'No Feedback Given.');
       setSubjectCategory(application?.subjectCategory || '');
-      setAppliedDegree(application?. applyingDegree || '');
+      setAppliedDegree(application?.applyingDegree || '');
       setApplicationFees(scholarshipDetails?.application_fees || '');
       setServiceCharge(scholarshipDetails?.service_charge || '');
       setStatus(application?.status || '');
@@ -87,24 +87,24 @@ const EachMyApplication = ({ application, refetch }) => {
       <td className="px-4 py-2">{status}</td>
       <td className="px-4 py-2">
         <div className="dropdown dropdown-bottom dropdown-end">
-        {showModal && <AddReviewButton application={application} showModal={showModal} setShowModal={setShowModal}  scholarshipDetails={scholarshipDetails}></AddReviewButton>}
-            <a id='y-anchor-element'>
+          {showModal && <AddReviewButton application={application} showModal={showModal} setShowModal={setShowModal} scholarshipDetails={scholarshipDetails}></AddReviewButton>}
+          <a id='y-anchor-element'>
 
 
-          <div id='y-anchor-element' tabIndex={0} role="button" className="btn m-1 bg-[#ff5202] text-white">Actions</div>
-            </a>
+            <div id='y-anchor-element' tabIndex={0} role="button" className="btn m-1 bg-[#ff5202] text-white">Actions</div>
+          </a>
 
-            <Tooltip
-  anchorSelect="#y-anchor-element"
-  content="scroll Down"
-/>
- 
-        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow gap-3 ">
+          <Tooltip
+            anchorSelect="#y-anchor-element"
+            content="scroll Down"
+          />
+
+          <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow gap-3 ">
             <li>
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded mr-2 block"
                 onClick={() => handleEditClick(application)}
-                // disabled={application.status !== 'pending'}
+          
               >
                 Edit
               </button>
@@ -128,13 +128,13 @@ const EachMyApplication = ({ application, refetch }) => {
             <li>
               <button
                 className="bg-yellow-500 text-white px-4 py-2 rounded block"
-                // onClick={() => navigate('/add-review')}
+       
                 onClick={() => setShowModal(true)}
               >
                 Add Review
               </button>
 
-           
+
             </li>
           </ul>
 

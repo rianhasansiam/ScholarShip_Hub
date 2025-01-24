@@ -3,10 +3,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { contextData } from '../Contex';
 import Swal from 'sweetalert2';
+import Loading from '../Pages/Loading';
 
 const EditScholarshipApplication = () => {
   const locationPath = useLocation();
-  const _id = locationPath.pathname.split('/')[3]; 
+  const _id = locationPath.pathname.split('/')[3];
   const { userData } = useContext(contextData);
 
   const navigate = useNavigate(); // For redirecting after saving
@@ -31,7 +32,7 @@ const EditScholarshipApplication = () => {
   useEffect(() => {
     const email = userData?.email;
 
-    axios.get(`http://localhost:5000/edit-myApplication`, {
+    axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/edit-myApplication`, {
       params: {
         _id,
         email,
@@ -78,33 +79,33 @@ const EditScholarshipApplication = () => {
     };
 
 
-console.log(formData)
-    axios.put(`http://localhost:5000/edit-my-application/${_id}?email=${userData.email}`, formData)
-    .then(() => {
-      Swal.fire({
-        title: 'Success!',
-        text: 'Application updated successfully!',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      }).then(() => {
-        navigate('/userdashboard/myapplication'); // Redirect after user clicks OK
-      });
-    })
-    .catch((err) => {
-      console.error('Error updating application:', err);
-      Swal.fire({
-        title: 'Error!',
-        text: 'Failed to update application',
-        icon: 'error',
-        confirmButtonText: 'Try Again'
-      });
-    })
+ 
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/edit-my-application/${_id}?email=${userData.email}`, formData)
+      .then(() => {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Application updated successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          navigate('/userdashboard/myapplication'); // Redirect after user clicks OK
+        });
+      })
+      .catch((err) => {
+        console.error('Error updating application:', err);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Failed to update application',
+          icon: 'error',
+          confirmButtonText: 'Try Again'
+        });
+      })
 
 
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
   return (
@@ -238,7 +239,7 @@ console.log(formData)
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            onClick={()=>navigate(-1)}
+            onClick={() => navigate(-1)}
             className="bg-[#ff5202] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Back

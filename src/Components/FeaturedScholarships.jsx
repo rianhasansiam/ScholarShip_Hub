@@ -77,7 +77,7 @@ const FeaturedScholarships = () => {
                 <strong>Subject:</strong> {scholarship.subject}
               </p>
               <div className="text-center text-yellow-500">
-                {'★'.repeat(Math.round(scholarship.rating))} 
+                {'★'.repeat(Math.round(scholarship.rating))}
               </div>
               <NavLink
                 to={scholarship.link}

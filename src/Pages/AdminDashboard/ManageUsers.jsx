@@ -2,21 +2,21 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { contextData } from '../../Contex';
-// import useAllUserReviews from '../../hooks/useAllUserReviews';
+
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [filterRole, setFilterRole] = useState('');
-  const {signoutHandle}= useContext(contextData)
+  const { signoutHandle } = useContext(contextData)
 
   // Fetch all users from the backend
   useEffect(() => {
-    axios.get('http://localhost:5000/get-all-users',{
+    axios.get('https://assignment-12-server-ruddy-eight.vercel.app/get-all-users', {
       headers: {
-          authorization: `Bearer ${localStorage.getItem('access-token')}`
+        authorization: `Bearer ${localStorage.getItem('access-token')}`
       }
-  })
+    })
       .then(response => {
         setUsers(response.data);
         setFilteredUsers(response.data); // Initially display all users
@@ -27,11 +27,7 @@ const ManageUsers = () => {
 
 
 
-  
-//   const [allUser, isLoading, refetch]= useAllUserReviews()
 
-// console.log(filteredUsers)
-  
 
   // Filter users by role
   const handleFilterChange = (userRole) => {
@@ -43,11 +39,11 @@ const ManageUsers = () => {
     }
   };
 
-  
+
 
   // Change user role
   const handleRoleChange = (userId, newRole) => {
-    axios.put(`http://localhost:5000/update-user-role/${userId}`, { userRole: newRole })
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/update-user-role/${userId}`, { userRole: newRole })
       .then(() => {
         Swal.fire('Role Updated!', `User role has been updated to ${newRole}.`, 'success');
         // Update the UI immediately
@@ -66,7 +62,7 @@ const ManageUsers = () => {
 
   // Delete user
   const handleDeleteUser = (userId) => {
-    axios.delete(`http://localhost:5000/delete-user/${userId}`)
+    axios.delete(`https://assignment-12-server-ruddy-eight.vercel.app/delete-user/${userId}`)
       .then(() => {
         Swal.fire('User Deleted!', 'The user has been deleted.', 'success');
         // Update the UI by removing the deleted user

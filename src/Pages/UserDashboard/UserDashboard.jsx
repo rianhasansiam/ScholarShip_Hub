@@ -30,7 +30,7 @@ const UserDashboard = () => {
               <span className="text-[#ff5202]">User</span> Dashboard
             </Link>
           </h1>
-          
+
 
           {/* Close button for mobile */}
           <button onClick={toggleMenu} className="text-white md:hidden">
@@ -49,7 +49,7 @@ const UserDashboard = () => {
               My Profile
             </NavLink>
           </li>
-   
+
           <li>
             <NavLink
               to="/userdashboard/myapplication"

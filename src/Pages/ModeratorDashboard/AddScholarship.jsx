@@ -11,10 +11,10 @@ const image_hosting_API = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddScholarship = () => {
   const navigate = useNavigate()
 
-const {userData}=useContext(contextData)
+  const { userData } = useContext(contextData)
 
 
- 
+
   const [address, setAddress] = useState('');
   const [degree, setDegree] = useState('');
   const [university_name, setUniversity_name] = useState('');
@@ -27,14 +27,14 @@ const {userData}=useContext(contextData)
   const [application_fees, setApplication_fees] = useState('');
   const [service_charge, setService_charge] = useState('');
   const [application_deadline, setApplication_deadline] = useState('');
- const [submit, setSubmit] = useState('Add Application'); 
- const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [submit, setSubmit] = useState('Add Application');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
- const handleDateChange = (e) => {
-  const date = new Date(e.target.value);
-  const formattedDate = date.toISOString(); // Converts to '2025-01-23T19:35:26.057Z' format
-  setApplication_deadline(formattedDate);
-};
+  const handleDateChange = (e) => {
+    const date = new Date(e.target.value);
+    const formattedDate = date.toISOString(); // Converts to '2025-01-23T19:35:26.057Z' format
+    setApplication_deadline(formattedDate);
+  };
 
 
 
@@ -56,13 +56,13 @@ const {userData}=useContext(contextData)
       });
 
       const imageUrl = imageRes.data.data.url;
-      
- 
 
-   
+
+
+
       const formData = {
-       
-        university_logo : imageUrl, 
+
+        university_logo: imageUrl,
         address,
         degree,
         university_name,
@@ -79,13 +79,13 @@ const {userData}=useContext(contextData)
         email: userData.email,
         dateApplied: new Date(),
       };
-      
 
 
-      // console.log(formData)
+
+
 
       // Submit the complete form data to your API
-      const response = await axios.post('http://localhost:5000/add-scholarship', formData);
+      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/add-scholarship', formData);
 
       if (response.status === 200) {
         Swal.fire('Application Submitted!', 'Your scholarship application has been submitted successfully.', 'success');
@@ -151,46 +151,46 @@ const {userData}=useContext(contextData)
 
 
       {/* Applicant address */}
-     
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">University Country</label>
-          <input
-            type="text"
-            placeholder="University Country"
-            value={address.country}
-            onChange={(e) => setAddress({ ...address, country: e.target.value })}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">University Country</label>
+        <input
+          type="text"
+          placeholder="University Country"
+          value={address.country}
+          onChange={(e) => setAddress({ ...address, country: e.target.value })}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+      </div>
 
 
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">University City</label>
-          <input
-            type="text"
-            placeholder="City"
-            value={address.city}
-            onChange={(e) => setAddress({ ...address, city: e.target.value })}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">University City</label>
+        <input
+          type="text"
+          placeholder="City"
+          value={address.city}
+          onChange={(e) => setAddress({ ...address, city: e.target.value })}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+      </div>
 
 
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">University World rank</label>
-          <input
-            type="number"
-            placeholder="World rank"
-            value={world_rank}
-            onChange={(e) => setWorld_rank(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">University World rank</label>
+        <input
+          type="number"
+          placeholder="World rank"
+          value={world_rank}
+          onChange={(e) => setWorld_rank(e.target.value)}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+      </div>
 
 
       {/* Applying Degree dropdown */}
@@ -247,75 +247,75 @@ const {userData}=useContext(contextData)
       </div>
 
 
-     
-      <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Tuition Fees</label>
-          <input
-            type="number"
-            placeholder="Tuition Fees"
-            value={stipend}
-            onChange={(e) => setStipend(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
-
-
 
       <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Application Fees</label>
-          <input
-            type="number"
-            placeholder="Tuition Fees"
-            value={application_fees}
-            onChange={(e) => setApplication_fees(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Tuition Fees</label>
+        <input
+          type="number"
+          placeholder="Tuition Fees"
+          value={stipend}
+          onChange={(e) => setStipend(e.target.value)}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+      </div>
+
+
 
       <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Service Charge</label>
-          <input
-            type="number"
-            placeholder="Tuition Fees"
-            value={service_charge}
-            onChange={(e) => setService_charge(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-          />
-        </div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Application Fees</label>
+        <input
+          type="number"
+          placeholder="Tuition Fees"
+          value={application_fees}
+          onChange={(e) => setApplication_fees(e.target.value)}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+      </div>
 
-
-   
-
-
-
-
-
-        <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">Application Deadline</label>
-      <input
-        type="date"
-        onChange={handleDateChange}
-        required
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
-      />
-      {/* Show the formatted date */}
-      <p>Formatted Deadline: {new Date(application_deadline).toLocaleDateString('en-US')}</p>
-
-    </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">Service Charge</label>
+        <input
+          type="number"
+          placeholder="Tuition Fees"
+          value={service_charge}
+          onChange={(e) => setService_charge(e.target.value)}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+      </div>
 
 
 
 
-        <button
-  type="submit"
-  className="w-full px-4 py-2 bg-[#ff5202] text-white font-semibold rounded-lg shadow-md hover:bg-[#ff5202] transition duration-300"
-   disabled={isSubmitting} // Disable the button if submitting
->
-  {submit}
-</button>
+
+
+
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">Application Deadline</label>
+        <input
+          type="date"
+          onChange={handleDateChange}
+          required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+        />
+        {/* Show the formatted date */}
+        <p>Formatted Deadline: {new Date(application_deadline).toLocaleDateString('en-US')}</p>
+
+      </div>
+
+
+
+
+      <button
+        type="submit"
+        className="w-full px-4 py-2 bg-[#ff5202] text-white font-semibold rounded-lg shadow-md hover:bg-[#ff5202] transition duration-300"
+        disabled={isSubmitting} // Disable the button if submitting
+      >
+        {submit}
+      </button>
 
 
 

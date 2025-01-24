@@ -4,27 +4,28 @@ import auth from './Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { contextData } from '../Contex';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
-  const {googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture, userRole, redirectPath}=useContext(contextData)
+  const { googleLogReg, setUserDataMongo, email, name, setEmail, setName, postuserDataHandle, setPicture, picture, userRole, redirectPath } = useContext(contextData)
 
 
-const navigation=useNavigate()
- 
+  const navigation = useNavigate()
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
 
 
 
-  const datasendHandle=async()=>{
-    const userDataSend={name, email, picture, userRole}
+  const datasendHandle = async () => {
+    const userDataSend = { name, email, picture, userRole }
 
 
 
-      const res=await axios.post('http://localhost:5000/userData', userDataSend )
-       console.log(res.data)
+    const res = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/userData', userDataSend)
+ 
 
 
 
@@ -38,65 +39,86 @@ const navigation=useNavigate()
 
     // Password Validation
     if (password.length < 6) {
-      console.log("Password must be at least 6 characters long");
+     
+      Swal.fire({
+        icon: 'error',
+        title: 'Password',
+        text: 'Password must be at least 6 characters long',
+        confirmButtonText: 'OK',
+      });
       return;
     }
     if (!/[A-Z]/.test(password)) {
-      console.log("Password must contain at least one uppercase letter");
+   
+      Swal.fire({
+        icon: 'error',
+        title: 'Password',
+        text: 'Password must contain at least one uppercase letter',
+        confirmButtonText: 'OK',
+      });
       return;
     }
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      console.log("Password must contain at least one special character");
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Password',
+        text: 'Password must contain at least one special character',
+        confirmButtonText: 'OK',
+      });
       return;
     }
     if (password !== confirmPassword) {
-      console.log("Passwords do not match");
+     
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Password',
+        text: 'Passwords do not match',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
-    
+
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up 
-      const user = userCredential.user;
-      console.log(user);
-
-      // navigation(redirectPath)
-
-      if (user) {
-        // Update the profile (set the display name and photo URL)
-        updateProfile(user, {
-          displayName: name,
-          // photoURL: photoUrl
-        })
-        .then(() => {
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+      //  console.log(user)
 
 
-          datasendHandle()
 
-          // After successful profile update, set the state
-          // setUserData(user);  
-          // setpic(photoUrl);    
-          // setName(name); 
- 
-          console.log('Profile updated!');
-        })
-        .catch((error) => {
-          console.error('Error updating profile:', error);
-        });
-      }
+        if (user) {
+          // Update the profile (set the display name and photo URL)
+          updateProfile(user, {
+            displayName: name,
+
+          })
+            .then(() => {
+
+
+              datasendHandle()
+
+
+              console.log('Profile updated!');
+            })
+            .catch((error) => {
+              console.error('Error updating profile:', error);
+            });
+        }
 
 
 
 
- 
-    })
-    .catch((error) => {
-      console.log("Error:", error.message);
-   
-    });
-  
+
+      })
+      .catch((error) => {
+        
+
+      });
+
 
 
   };
@@ -106,14 +128,14 @@ const navigation=useNavigate()
 
 
   useEffect(() => {
-   
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigation(redirectPath)
 
-       
+
       } else {
-        console.log('User is signed out');
+       
       }
     });
 
@@ -202,7 +224,7 @@ const navigation=useNavigate()
 
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          You have an account?  
+          You have an account?
           <Link to="/login" className="text-indigo-600 hover:underline"> Login</Link>
         </p>
 

@@ -9,7 +9,7 @@ import { contextData } from '../Contex'
 
 const Home = () => {
   const {loading,setLoading}= useContext(contextData)
-  // console.log(loading)
+
   setLoading(false)
   
   return (

@@ -3,54 +3,55 @@ import auth from './Firebase';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { contextData } from '../Contex';
-// Assuming you have a CSS file named styles.css
+import Swal from 'sweetalert2';
+
 
 const LogIn = () => {
 
-  const {googleLogReg,redirectPath }=useContext(contextData)
+  const { googleLogReg, redirectPath } = useContext(contextData)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 
-  const navigation=useNavigate()
+  const navigation = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
-    console.log({ email, password });
+  
 
     navigation(redirectPath)
 
 
 
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-  
-      
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
 
-      console.log(errorMessage)
-    });
+
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+
+      });
   };
 
 
 
 
   useEffect(() => {
-   
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigation(redirectPath)
 
-       
+
       } else {
-        console.log('User is signed out');
+        
       }
     });
 
@@ -125,7 +126,7 @@ const LogIn = () => {
 
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          Don't have an account? 
+          Don't have an account?
           <Link to="/signup" className="text-indigo-600 hover:underline">Sign up</Link>
         </p>
       </div>

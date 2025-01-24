@@ -12,13 +12,13 @@ const AllScholarship = (props) => {
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // console.log(loading)
+
 
   // Fetch scholarships with pagination
   const fetchScholarships = async (page, query = '') => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/all-Scholarships', {
+      const response = await axios.get('https://assignment-12-server-ruddy-eight.vercel.app/all-Scholarships', {
         params: { page, limit: 6, search: query }, // Pass search query as a parameter
       });
       setAllScholarships(response.data.scholarships);
@@ -36,7 +36,7 @@ const AllScholarship = (props) => {
 
 
   useEffect(() => {
-    
+
     setCurrentPage(1); // Reset to the first page on search
     fetchScholarships(1, searchQuery);
 
@@ -53,8 +53,7 @@ const AllScholarship = (props) => {
   };
 
   return (
-  <>
-  {loading? <Loading></Loading>:  <div>
+    <div>
       <h2 className='text-center font-bold text-4xl py-5 pt-10'>All Scholarships Circular</h2>
       <div className="search-box flex justify-center my-4">
         <input
@@ -73,14 +72,14 @@ const AllScholarship = (props) => {
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <Loading></Loading>
       ) : (
         <div className='pb-8'>
 
 
 
 
-          <div className='grid grid-cols-3  container px-28 mx-auto '>
+          <div className='grid  md:grid-cols-2 lg:grid-cols-3  container lg:px-28 mx-auto '>
             {allScholarships.map((scholarship) => (
               <ScolarshipCard key={scholarship._id} topeachcard={scholarship}></ScolarshipCard>
             ))}
@@ -94,55 +93,53 @@ const AllScholarship = (props) => {
 
 
 
-    
 
 
 
 
-<div className="pagination flex justify-center mt-4 space-x-1">
-  
 
-  {/* Previous Button */}
-  <button
-    onClick={() => handlePageChange(currentPage - 1)}
-    disabled={currentPage === 1}
-    className="px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 disabled:bg-gray-100"
-  >
-      <i className="fa-solid fa-chevron-left"></i>
-  </button>
+          <div className="pagination flex justify-center mt-4 space-x-1">
 
-  {/* Display page numbers */}
-  {Array.from({ length: totalPages }, (_, index) => {
-    const page = index + 1;
-    return (
-      <button
-        key={page}
-        onClick={() => handlePageChange(page)}
-        className={`px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 ${
-          currentPage === page ? 'bg-[#ff5202] text-white' : 'bg-white'
-        }`}
-      >
-        {page}
-      </button>
-    );
-  })}
 
-  {/* Next Button */}
-  <button
-    onClick={() => handlePageChange(currentPage + 1)}
-    disabled={currentPage === totalPages}
-    className="px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 disabled:bg-gray-100"
-  >
-    <i className="fa-solid fa-chevron-right"></i>
-  </button>
+            {/* Previous Button */}
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 disabled:bg-gray-100"
+            >
+              <i className="fa-solid fa-chevron-left"></i>
+            </button>
 
- 
-</div>
+            {/* Display page numbers */}
+            {Array.from({ length: totalPages }, (_, index) => {
+              const page = index + 1;
+              return (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 ${currentPage === page ? 'bg-[#ff5202] text-white' : 'bg-white'
+                    }`}
+                >
+                  {page}
+                </button>
+              );
+            })}
+
+            {/* Next Button */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-5 py-1 border border-gray-300 rounded hover:bg-gray-200 disabled:bg-gray-100"
+            >
+              <i className="fa-solid fa-chevron-right"></i>
+            </button>
+
+
+          </div>
 
         </div>
       )}
-    </div>}
-  </>
+    </div>
   );
 };
 

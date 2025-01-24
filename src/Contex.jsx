@@ -2,8 +2,9 @@ import { signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from
 import { createContext, useEffect, useState } from "react";
 import auth from "./Security/Firebase"; // Ensure Firebase is correctly initialized
 import axios from 'axios'; // Use axios directly here
-import { useNavigate } from "react-router-dom";
+
 import useAxiosPublic from "./hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 export const contextData = createContext();
 
@@ -27,11 +28,11 @@ const Contex = ({ children }) => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        if(userData){
+        if (userData) {
 
           // Fetch user's user Role
-          const res = await axios.get(`http://localhost:5000/userInfo?email=${userData?.email}`);
-          // console.log(res.data)
+          const res = await axios.get(`https://assignment-12-server-ruddy-eight.vercel.app/userInfo?email=${userData?.email}`);
+
           setuserRole(res.data?.userRole);
           setLoading(false)
 
@@ -40,9 +41,9 @@ const Contex = ({ children }) => {
         console.error("Error fetching data", error);
       }
     };
-  
-    
-  
+
+
+
     fetchData();
   }, [userData]);
 
@@ -52,7 +53,7 @@ const Contex = ({ children }) => {
 
 
 
-  
+
   const provider = new GoogleAuthProvider();
 
   const googleLogReg = () => {
@@ -60,24 +61,24 @@ const Contex = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-  
 
 
 
-if(user){
-  const name=user.displayName
-  const email=user.email
-  const picture=user.photoURL
-  const userDataSend={name, email, picture}
-  // console.log(userDataSend, 'send this')
+
+        if (user) {
+          const name = user.displayName
+          const email = user.email
+          const picture = user.photoURL
+          const userDataSend = { name, email, picture }
 
 
-     axios.post('http://localhost:5000/userData', userDataSend )
-     .then(res=>console.log(res.data))
-}
+
+          axios.post('https://assignment-12-server-ruddy-eight.vercel.app/userData', userDataSend)
+         
+        }
 
 
-       
+
         setLoading(false);
       })
       .catch((error) => {
@@ -89,23 +90,23 @@ if(user){
 
 
 
-  const authenticateUser= async(email)=>{
+  const authenticateUser = async (email) => {
     try {
-      const response = await axios.post('http://localhost:5000/jwt', {email});
-    
+      const response = await axios.post('https://assignment-12-server-ruddy-eight.vercel.app/jwt', { email });
+
       // Assuming the token is in the response body
       const token = response.data.token; // Adjust according to your API response structure
-    //  console.log(token)
+
       // Store the token in localStorage
       localStorage.setItem('access-token', token);
-    
-      console.log('JWT Token stored in localStorage:', token);
+
+     
     } catch (error) {
       console.error('Authentication failed:', error);
     }
-    }
+  }
 
-  
+
 
 
 
@@ -117,34 +118,22 @@ if(user){
         setUserData(user);
         setName(user?.displayName);
         setEmail(user?.email);
-        if(user.photoURL){
+        if (user.photoURL) {
           setPicture(user?.photoURL)
         }
-        console.log('checker login');
-// if(user){
-//      const userInfo = {email: user.email}
-//      axios.post('/jwt', userInfo)
-//      .then(res=>{
-//       if (res.data.token){
-//         localStorage.setItem('access-token', res.data.token)
-//       }
-//      })
+      
 
-// } else{
 
-//     localStorage.removeItem('access-token')
-// }
-
-        authenticateUser(user.email)
+        authenticateUser(user?.email)
 
 
 
         setLoading(false);
-       
+
       } else {
-        console.log('User is signed out');
+        
         localStorage.removeItem('access-token')
-      
+
       }
     });
 
@@ -162,7 +151,13 @@ if(user){
     setLoading(true);
     signOut(auth)
       .then(() => {
-        console.log('Signout successful');
+
+        Swal.fire({
+          icon: 'info',
+          title: 'Signed Out',
+          text: 'You have been signed out successfully!',
+          confirmButtonText: 'OK',
+        });
         setUserData(null)
         setEmail(null)
         setName(null)

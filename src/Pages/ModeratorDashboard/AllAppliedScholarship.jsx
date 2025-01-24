@@ -16,7 +16,7 @@ const AllAppliedScholarships = () => {
   // useEffect to handle sorting logic
   useEffect(() => {
     let sorted = [...allAppliedScholarship];
-    // console.log(sorted)
+
     if (sortOption === 'appliedDate') {
       sorted.sort((a, b) => new Date(b.dateApplied) - new Date(a.dateApplied));
     } else if (sortOption === 'scholarshipDeadline') {
@@ -40,7 +40,7 @@ const AllAppliedScholarships = () => {
   };
 
   const handleSubmitFeedback = () => {
-    axios.put(`http://localhost:5000/submit-feedback/${selectedApplication._id}`, { feedback })
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/submit-feedback/${selectedApplication._id}`, { feedback })
       .then(() => {
         Swal.fire('Feedback Submitted!', 'The feedback has been added successfully.', 'success');
         document.getElementById('feedback_modal').close();
@@ -53,7 +53,7 @@ const AllAppliedScholarships = () => {
   };
 
   const handleCancelApplication = (applicationId) => {
-    axios.put(`http://localhost:5000/cancel-application/${applicationId}`)
+    axios.put(`https://assignment-12-server-ruddy-eight.vercel.app/cancel-application/${applicationId}`)
       .then(() => {
         Swal.fire('Application Cancelled', 'The application has been cancelled.', 'success');
         refetch();

@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ReviewerCard = ({review}) => {
+const ReviewerCard = ({ review }) => {
 
 
 
 
     return (
         <div
-           
+
             className="bg-gray-100 p-4 w-[80%] mx-auto rounded-lg shadow-md flex space-x-4"
         >
             {/* Reviewer Image */}

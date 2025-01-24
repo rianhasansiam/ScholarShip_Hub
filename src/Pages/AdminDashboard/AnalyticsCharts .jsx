@@ -12,7 +12,7 @@ const AnalyticsCharts = () => {
 
   // Fetching the analytics data from API
   useEffect(() => {
-    axios.get('http://localhost:5000/api/applications/analytics')
+    axios.get('https://assignment-12-server-ruddy-eight.vercel.app/api/applications/analytics')
       .then((response) => {
         const { data } = response;
         setApplicationsData(data.applicationsOverTime);

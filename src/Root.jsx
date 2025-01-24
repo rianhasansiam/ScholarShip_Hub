@@ -36,131 +36,131 @@ import PrivateModaretor from "./Pages/PrivateModaretor";
 
 
 const Root = createBrowserRouter([
-    {
-      path: "/",
-      element: <App/>,
-      errorElement: <Error404></Error404>,
-      children:[
-        {
-          path:'/',
-          element:<Home></Home>
-        },
-       
-        {
-          path:'allscholarship',
-          element:<AllScholarship></AllScholarship>
-        },
-        {
-          path:'aboutUs',
-          element:<AboutUs></AboutUs>
-        },
-        {
-          path:'logIn',
-          element:<LogIn></LogIn>
-        },
-        {
-          path:'signUp',
-          element:<SignUp></SignUp>
-        },
-        {
-          path:'scholarshipDetails/:_id',
-          element:<Private><ScholarshipDetails></ScholarshipDetails></Private>
-        },
-        {
-          path:'payment/:_id',
-          element:<Private><PaymentLayout></PaymentLayout></Private>,
-        
-       },
-       {
-        path:'application-form/:_id',
-        element:<Private><ApplicationForm></ApplicationForm></Private>
-      
-     },
-        {
-          path:'userdashboard',
-          element: <Private><UserDashboard></UserDashboard></Private>,
-          children:[
-            {
-              path:'myprofile',
-              element:<Private><MyProfile></MyProfile></Private>
-            },
-            {
-              path:'myapplication',
-              element:<Private><MyApplication></MyApplication></Private>
-            },
-            {
-              path:'myreviews',
-              element:<Private><MyReviews></MyReviews></Private>
-            },
-            {
-              path:'editApplication/:id',
-              element:<Private><EditScholarshipApplication></EditScholarshipApplication></Private>
-            },
-          ]
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error404></Error404>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+
+      {
+        path: 'allscholarship',
+        element: <AllScholarship></AllScholarship>
       },
       {
-        path:'admindashboard',
-        element: <PrivateAdmin><AdminDashboard></AdminDashboard></PrivateAdmin> ,
-        children:[
+        path: 'aboutUs',
+        element: <AboutUs></AboutUs>
+      },
+      {
+        path: 'logIn',
+        element: <LogIn></LogIn>
+      },
+      {
+        path: 'signUp',
+        element: <SignUp></SignUp>
+      },
+      {
+        path: 'scholarshipDetails/:_id',
+        element: <Private><ScholarshipDetails></ScholarshipDetails></Private>
+      },
+      {
+        path: 'payment/:_id',
+        element: <Private><PaymentLayout></PaymentLayout></Private>,
+
+      },
+      {
+        path: 'application-form/:_id',
+        element: <Private><ApplicationForm></ApplicationForm></Private>
+
+      },
+      {
+        path: 'userdashboard',
+        element: <Private><UserDashboard></UserDashboard></Private>,
+        children: [
           {
-            path:'myprofile',
-            element:<PrivateAdmin><MyProfile></MyProfile></PrivateAdmin>
+            path: 'myprofile',
+            element: <Private><MyProfile></MyProfile></Private>
           },
           {
-            path:'addscholarship',
-            element:<PrivateAdmin><AddScholarship></AddScholarship></PrivateAdmin>
+            path: 'myapplication',
+            element: <Private><MyApplication></MyApplication></Private>
           },
           {
-            path:'allappliedscholarship',
-            element:<PrivateAdmin><AllAppliedScholarship></AllAppliedScholarship></PrivateAdmin>
+            path: 'myreviews',
+            element: <Private><MyReviews></MyReviews></Private>
           },
           {
-            path:'managescholarships',
-            element:<PrivateAdmin><ManageScholarships></ManageScholarships></PrivateAdmin>
+            path: 'editApplication/:id',
+            element: <Private><EditScholarshipApplication></EditScholarshipApplication></Private>
+          },
+        ]
+      },
+      {
+        path: 'admindashboard',
+        element: <PrivateAdmin><AdminDashboard></AdminDashboard></PrivateAdmin>,
+        children: [
+          {
+            path: 'myprofile',
+            element: <PrivateAdmin><MyProfile></MyProfile></PrivateAdmin>
           },
           {
-            path:'allreviews',
-            element:<PrivateAdmin><AllReviews></AllReviews></PrivateAdmin>
+            path: 'addscholarship',
+            element: <PrivateAdmin><AddScholarship></AddScholarship></PrivateAdmin>
           },
           {
-            path:'manageusers',
-            element:<PrivateAdmin><ManageUsers></ManageUsers></PrivateAdmin>
+            path: 'allappliedscholarship',
+            element: <PrivateAdmin><AllAppliedScholarship></AllAppliedScholarship></PrivateAdmin>
           },
           {
-            path:'analisisChart',
+            path: 'managescholarships',
+            element: <PrivateAdmin><ManageScholarships></ManageScholarships></PrivateAdmin>
+          },
+          {
+            path: 'allreviews',
+            element: <PrivateAdmin><AllReviews></AllReviews></PrivateAdmin>
+          },
+          {
+            path: 'manageusers',
+            element: <PrivateAdmin><ManageUsers></ManageUsers></PrivateAdmin>
+          },
+          {
+            path: 'analisisChart',
             element: <PrivateAdmin><AnalyticsCharts></AnalyticsCharts></PrivateAdmin>
           }
         ]
       },
       {
-        path:'moderatordashboard',
-        element: <PrivateModaretor><ModeratorDashboard></ModeratorDashboard></PrivateModaretor> ,
-        children:[
+        path: 'moderatordashboard',
+        element: <PrivateModaretor><ModeratorDashboard></ModeratorDashboard></PrivateModaretor>,
+        children: [
           {
-            path:'myprofile',
-            element:<PrivateModaretor><MyProfile></MyProfile></PrivateModaretor>
+            path: 'myprofile',
+            element: <PrivateModaretor><MyProfile></MyProfile></PrivateModaretor>
           },
           {
-            path:'managescholarships',
-            element:<PrivateModaretor><ManageScholarships></ManageScholarships></PrivateModaretor>
+            path: 'managescholarships',
+            element: <PrivateModaretor><ManageScholarships></ManageScholarships></PrivateModaretor>
           },
           {
-            path:'allreviews',
-            element:<PrivateModaretor><AllReviews></AllReviews></PrivateModaretor>
+            path: 'allreviews',
+            element: <PrivateModaretor><AllReviews></AllReviews></PrivateModaretor>
           },
           {
-            path:'allappliedscholarship',
-            element:<PrivateModaretor><AllAppliedScholarship></AllAppliedScholarship></PrivateModaretor>
+            path: 'allappliedscholarship',
+            element: <PrivateModaretor><AllAppliedScholarship></AllAppliedScholarship></PrivateModaretor>
           },
           {
-            path:'addscholarship',
-            element:<PrivateModaretor><AddScholarship></AddScholarship></PrivateModaretor>
+            path: 'addscholarship',
+            element: <PrivateModaretor><AddScholarship></AddScholarship></PrivateModaretor>
           },
         ]
       }
-       
-      ]
-    },
-  ]);
 
-  export default Root
+    ]
+  },
+]);
+
+export default Root
