@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
@@ -6,14 +6,20 @@ import useAllScholarshipData from '../../hooks/useAllScholarshipData';
 import Loading from '../Loading';
 import { useNavigate } from 'react-router-dom';
 import ModaAllScholarship from './ModaAllScholarship';
+import { contextData } from '../../Contex';
 
 
 const ManageScholarships = () => {
-  // const [allscholarshipData, isPending, refetch] = useAllScholarshipData()
+  // const [allscholarshipData, isLoading, refetch] = useAllScholarshipData()
   const [allscholarshipData, isLoading, error, refetch] = useAllScholarshipData()
 
-//   console.log(allscholarshipData)
+  const {signoutHandle}= useContext(contextData)
 
+  if(error){
+    signoutHandle()
+  }
+  
+  // console.log(error)
 // const [loading, setLoading]= useState(false)
 //   const [renderScholarship, setRenderScholarship] = useState([]);
 

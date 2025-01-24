@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { contextData } from '../../Contex';
 // import useAllUserReviews from '../../hooks/useAllUserReviews';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [filterRole, setFilterRole] = useState('');
+  const {signoutHandle}= useContext(contextData)
 
   // Fetch all users from the backend
   useEffect(() => {
-    axios.get('http://localhost:5000/get-all-users')
+    axios.get('http://localhost:5000/get-all-users',{
+      headers: {
+          authorization: `Bearer ${localStorage.getItem('access-token')}`
+      }
+  })
       .then(response => {
         setUsers(response.data);
         setFilteredUsers(response.data); // Initially display all users
       })
-      .catch(error => console.error('Error fetching users:', error));
+      .catch(error => signoutHandle());
   }, []);
 
 
-//   const [allUser, isPending, refetch]= useAllUserReviews()
+
+
+  
+//   const [allUser, isLoading, refetch]= useAllUserReviews()
 
 // console.log(filteredUsers)
   

@@ -13,7 +13,7 @@
 //     const _id = locationPath.pathname.split('/')[2]
 //     console.log(_id)
 
-//     const [scholarshipDetails, isPending] = useAllDataFetch(_id)
+//     const [scholarshipDetails, isLoading] = useAllDataFetch(_id)
 //     const {university_logo, application_fees, university_name} = scholarshipDetails
 //     const {name}=useContext(contextData)
 
@@ -146,7 +146,7 @@ const PaymentLayout = () => {
   const _id = locationPath.pathname.split('/')[2];
 
   // Fetch scholarship details (custom hook for fetching data)
-  const [scholarshipDetails, isPending] = useAllDataFetch(_id);
+  const [scholarshipDetails, isLoading] = useAllDataFetch(_id);
 
   // Destructure relevant data from the scholarship details
   const { university_logo, application_fees, university_name } = scholarshipDetails;
@@ -155,7 +155,7 @@ const PaymentLayout = () => {
   const { name } = useContext(contextData);
 
   // Display loading state if the data is still being fetched
-  if (isPending) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
  

@@ -16,7 +16,7 @@ const ScholarshipDetails = () => {
   
   const _id = locationPath.pathname.split('/')[2]
 
-  const [scholarshipDetails, isPending,refetch] = useAllDataFetch(_id)
+  const [scholarshipDetails, isLoading,refetch] = useAllDataFetch(_id)
 
   // useEffect(()=>{
   //   refetch()
@@ -30,7 +30,7 @@ const ScholarshipDetails = () => {
 
   // console.log()
   
-  if (isPending) {
+  if (isLoading) {
     return <Loading></Loading>;
   }
 

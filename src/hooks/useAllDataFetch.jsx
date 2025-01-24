@@ -6,7 +6,7 @@ const useAllDataFetch = (_id) => {
 
     // console.log(rian)
 
-    const { isPending, data:scholarshipDetails=[], refetch } = useQuery({
+    const { isLoading, data:scholarshipDetails=[], refetch } = useQuery({
         queryKey: ['details'],  //unique  akek joner email aa akek joner jonno cach korbe
         queryFn: async() =>{
         const res =await axios.get(`http://localhost:5000/scholarshipDetails/${_id}`)
@@ -14,7 +14,7 @@ const useAllDataFetch = (_id) => {
         }
       })
 
-  return [scholarshipDetails, isPending, refetch]
+  return [scholarshipDetails, isLoading, refetch]
 }
 
 export default useAllDataFetch;

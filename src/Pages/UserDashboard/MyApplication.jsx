@@ -3,14 +3,14 @@ import EachMyApplication from '../../Components/EachMyApplication';
 import useFetchEachApplication from '../../hooks/useFetchEachApplication';
 
 const MyApplication = () => {
-  const [tanstechData, isPending, refetch] = useFetchEachApplication(); // Using isPending properly for loading state
+  const [tanstechData, isLoading, refetch] = useFetchEachApplication(); // Using isLoading properly for loading state
 
   return (
 <div className="container mx-auto px-4">
   <h2 className="text-2xl font-bold mb-4 text-center">My Applied Scholarships</h2>
 
   {/* Conditionally render a loading message or the table */}
-  {isPending ? (
+  {isLoading ? (
     <div className="text-center my-4">
       <span>Loading...</span>
     </div>
@@ -40,7 +40,7 @@ const MyApplication = () => {
   )}
 
   {/* If no applications are found */}
-  {!isPending && tanstechData.length === 0 && (
+  {!isLoading && tanstechData.length === 0 && (
     <div className="text-center my-4">
       <span>No applications found.</span>
     </div>

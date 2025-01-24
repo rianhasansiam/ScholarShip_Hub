@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import auth from "./Security/Firebase"; // Ensure Firebase is correctly initialized
 import axios from 'axios'; // Use axios directly here
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "./hooks/useAxiosPublic";
 
 export const contextData = createContext();
 
@@ -88,6 +89,23 @@ if(user){
 
 
 
+  const authenticateUser= async(email)=>{
+    try {
+      const response = await axios.post('http://localhost:5000/jwt', {email});
+    
+      // Assuming the token is in the response body
+      const token = response.data.token; // Adjust according to your API response structure
+    //  console.log(token)
+      // Store the token in localStorage
+      localStorage.setItem('access-token', token);
+    
+      console.log('JWT Token stored in localStorage:', token);
+    } catch (error) {
+      console.error('Authentication failed:', error);
+    }
+    }
+
+  
 
 
 
@@ -103,14 +121,30 @@ if(user){
           setPicture(user?.photoURL)
         }
         console.log('checker login');
+// if(user){
+//      const userInfo = {email: user.email}
+//      axios.post('/jwt', userInfo)
+//      .then(res=>{
+//       if (res.data.token){
+//         localStorage.setItem('access-token', res.data.token)
+//       }
+//      })
+
+// } else{
+
+//     localStorage.removeItem('access-token')
+// }
+
+        authenticateUser(user.email)
 
 
-      
 
         setLoading(false);
        
       } else {
         console.log('User is signed out');
+        localStorage.removeItem('access-token')
+      
       }
     });
 
@@ -118,6 +152,11 @@ if(user){
       unsubscribe();
     };
   }, []);
+
+
+
+
+
 
   const signoutHandle = () => {
     setLoading(true);

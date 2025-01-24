@@ -15,7 +15,7 @@ const ApplicationForm = () => {
   const navigate = useNavigate()
   
   // Fetch scholarship details (custom hook for fetching data)
-  const [scholarshipDetails, isPending] = useAllDataFetch(_id);
+  const [scholarshipDetails, isLoading] = useAllDataFetch(_id);
   const { userData } = useContext(contextData);
   // console.log(userData.displayName)
   const [user_id,setuser_id]=useState('')

@@ -7,7 +7,7 @@ import { Tooltip } from 'react-tooltip';
 import AddReviewButton from './AddReviewButton';
 
 const EachMyApplication = ({ application, refetch }) => {
-  const [scholarshipDetails, isPending] = useAllDataFetch(application?.scholarshipId);
+  const [scholarshipDetails, isLoading] = useAllDataFetch(application?.scholarshipId);
 
   // console.log(scholarshipDetails)
 
