@@ -66,7 +66,7 @@ Follow these steps to set up the project locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/rianhasansiam/ScholarShip_Hub.git
-   cd cozystay  
+   cd ScholarShip_Hub  
    ```
 
 
