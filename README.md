@@ -8,6 +8,10 @@ The **Scholarship Management System** is a web application designed to help stud
 
 [Scholarship Hub](https://assignment-12-b3c0e.web.app)
 
+
+## Screenshot
+![Scholarship Hub Screenshot](https://rianhasansiam-64bc5.web.app/assets/scholarshiHUb-D_LzlTgO.png)
+
 ## Key Features
 
 - **Student Role**: Students can register, search for scholarships, apply, and track the status of their applications.
@@ -53,12 +57,28 @@ Here are the key npm packages used in this project:
 - `dotenv`: For managing environment variables.
 - `concurrently`: For running multiple processes simultaneously (used in development).
   
-## Getting Started
 
-To run this project locally, follow these steps:
+  
+## Local Setup
+
+Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/scholarship-management-system.git
+   git clone https://github.com/rianhasansiam/ScholarShip_Hub.git
+   cd cozystay  
+   ```
+
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+
+3. **Project start**:
+   ```bash
+   npm start
+   ```
 
 
