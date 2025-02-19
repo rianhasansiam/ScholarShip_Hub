@@ -40,7 +40,7 @@ const FAQ = () => {
             className="mb-4 border-b border-gray-300 pb-4"
           >
             <button
-              className="w-full text-left text-xl font-medium text-blue-500 focus:outline-none"
+              className="w-full text-left text-xl font-medium text-[#ff5202] focus:outline-none"
               onClick={() => toggleFAQ(index)}
             >
               {faq.question}

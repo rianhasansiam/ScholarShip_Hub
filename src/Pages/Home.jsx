@@ -8,6 +8,7 @@ import Loading from './Loading'
 import { contextData } from '../Contex'
 import FAQ from '../Components/FAQ'
 import NewsLetter from '../Components/NewsLetter'
+import SalesPromotion from '../Components/SalesPromotion'
 
 const Home = () => {
   const {loading,setLoading}= useContext(contextData)
@@ -24,6 +25,7 @@ const Home = () => {
     <FeaturedScholarships></FeaturedScholarships>
     <FAQ></FAQ>
     <NewsLetter></NewsLetter>
+    <SalesPromotion></SalesPromotion>
     
     
     </>}
