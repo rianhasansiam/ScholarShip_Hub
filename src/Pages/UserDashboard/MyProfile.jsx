@@ -9,23 +9,18 @@ const image_hosting_key = import.meta.env.VITE_IMGE_JOSTING_KEY;
 const image_hosting_API = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const MyProfile = () => {
-  const { name, picture, userRole, email, setPicture, userData } = useContext(contextData); // Assuming you get these details from context
+  const { name, picture, userRole, email, setPicture, userData } = useContext(contextData);
 
-
-  const [photo, setPhoto] = useState('')
-  const [utpdateButton, setUpdateButton] = useState('Update Photo')
+  const [photo, setPhoto] = useState('');
+  const [updateButton, setUpdateButton] = useState('Update Photo');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bio, setBio] = useState(''); // New state for bio
 
   const updatePhoto = async () => {
-
-
-
-
-    if (isSubmitting) return; // If the form is already submitting, do nothing
+    if (isSubmitting) return;
     setIsSubmitting(true);
+    setUpdateButton('Updating...');
 
-    setUpdateButton('Updating.....')
-    // Handle the image upload first
     const imageFormData = new FormData();
     imageFormData.append('image', photo);
 
@@ -37,50 +32,27 @@ const MyProfile = () => {
       });
 
       const imageUrl = imageRes.data.data.url;
-      setPicture(imageUrl)
-     
+      setPicture(imageUrl);
 
       if (userData) {
-
-
         updateProfile(userData, {
-
-          photoURL: imageUrl
+          photoURL: imageUrl,
         })
           .then(() => {
             Swal.fire({
               icon: 'success',
               title: 'Profile updated!',
-              text: 'You have been Profile updated!',
+              text: 'Your profile photo has been updated.',
               confirmButtonText: 'OK',
             });
-
-            setUpdateButton('Update Photo')
-            const modal = document.getElementById('my_modal_5');
-            if (modal) {
-              modal.close();
-            }
-
-          })
+            setUpdateButton('Update Photo');
+            closeModal();
+          });
       }
-
-
-
-
-
-
-
-      // Handle further actions, e.g., saving the image URL to your database
-
-
-
     } catch (error) {
       console.error('Error uploading the image:', error);
     }
   };
-
-
-
 
   const openModal = () => {
     const modal = document.getElementById('my_modal_5');
@@ -94,6 +66,10 @@ const MyProfile = () => {
     if (modal) {
       modal.close();
     }
+  };
+
+  const handleBioChange = (e) => {
+    setBio(e.target.value); // Update bio state
   };
 
   return (
@@ -117,7 +93,19 @@ const MyProfile = () => {
       {/* Email */}
       <p className="text-gray-500 mb-4">{email}</p>
 
-      <div className='flex gap-5'>
+      {/* New About Me Section */}
+      <div className="w-full mt-6">
+        <h2 className="text-lg font-semibold mb-2">About Me</h2>
+        <textarea
+          placeholder="Tell us something about yourself..."
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
+          value={bio}
+          onChange={handleBioChange}
+        />
+        <p className="mt-2 text-gray-600">{bio}</p>
+      </div>
+
+      <div className="flex gap-5 mt-4">
         {/* Role (only if not a regular user) */}
         {userRole && (
           <div className="flex items-center bg-[#ff5202] text-white px-4 py-2 rounded-md">
@@ -156,14 +144,10 @@ const MyProfile = () => {
               onClick={updatePhoto}  // Trigger photo update
               disabled={isSubmitting}
             >
-              {utpdateButton}
+              {updateButton}
             </button>
           </div>
         </div>
-
-        {/* <div className="modal-action">
-          <button className="btn" onClick={closeModal}>Close</button>
-        </div> */}
       </dialog>
     </div>
   );
