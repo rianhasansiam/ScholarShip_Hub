@@ -81,7 +81,7 @@ const AllAppliedScholarships = () => {
         </select>
       </div>
 
-     <div className='w-[95vw] overflow-auto'>
+     <div className='w-[97%] mx-auto overflow-auto'>
 
      <table className="min-w-full bg-white border">
         <thead>

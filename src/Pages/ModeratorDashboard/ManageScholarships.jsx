@@ -28,7 +28,7 @@ const ManageScholarships = () => {
         :
         (<div className="container mx-auto p-4">
           <h2 className="text-2xl font-bold mb-4">Manage Scholarships ({allscholarshipData?.length})</h2>
-          <div className='w-[95vw] overflow-auto'>
+          <div className='w-[97%] mx-auto overflow-auto'>
           <table className="min-w-full bg-white  ">
             <thead>
               <tr>

@@ -97,7 +97,7 @@ const AdminDashboard = () => {
                 className="text-lg block py-1 hover:text-[#ff5202] text-center rounded-lg"
                 onClick={toggleMenu} // Close the menu after clicking on a link
               >
-                Manage Review
+                Manage All Review
               </NavLink>
             </li>
 

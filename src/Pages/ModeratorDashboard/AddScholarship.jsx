@@ -15,7 +15,7 @@ const AddScholarship = () => {
 
 
 
-  const [address, setAddress] = useState('');
+  const [university_location, setUniversity_location] = useState('');
   const [degree, setDegree] = useState('');
   const [university_name, setUniversity_name] = useState('');
   const [scholarship_category, setScholarship_category] = useState('');
@@ -63,7 +63,7 @@ const AddScholarship = () => {
       const formData = {
 
         university_logo: imageUrl,
-        address,
+        university_location,
         degree,
         university_name,
         scholarship_category,
@@ -157,8 +157,8 @@ const AddScholarship = () => {
         <input
           type="text"
           placeholder="University Country"
-          value={address.country}
-          onChange={(e) => setAddress({ ...address, country: e.target.value })}
+          value={university_location.country}
+          onChange={(e) => setUniversity_location({ ...university_location, country: e.target.value })}
           required
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
         />
@@ -171,8 +171,8 @@ const AddScholarship = () => {
         <input
           type="text"
           placeholder="City"
-          value={address.city}
-          onChange={(e) => setAddress({ ...address, city: e.target.value })}
+          value={university_location.city}
+          onChange={(e) => setUniversity_location({ ...university_location, city: e.target.value })}
           required
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5202] focus:border-transparent"
         />
