@@ -17,7 +17,7 @@ const SalesPromotion = () => {
               Get access to exclusive scholarships with premium features. Limited-time 30% discount on all premium plans!
             </p>
             <button className="px-6 py-2 bg-[#ff5202] text-white rounded-lg hover:bg-[#da7749]">
-              Unlock Now
+              <a target='blank' href='https://internationalstudentsvc.org/college-planning-resources/scholarship-financial-aid-resources/list-of-scholarship/?gad_source=1&gclid=CjwKCAiAn9a9BhBtEiwAbKg6fuzrSnkbY4b8kUIbJIXfqy787yBu0WW-OygIzRZbfnHmxCTJJ2IGzhoCo6QQAvD_BwE'>Unlock Now</a>
             </button>
           </div>
 
@@ -28,7 +28,7 @@ const SalesPromotion = () => {
               Need help with your scholarship application? Get personalized advice and support with a 20% discount!
             </p>
             <button className="px-6 py-2 bg-[#ff5202] text-white rounded-lg hover:bg-[#da7749]">
-              Book a Session
+          <a target='blank' href='https://foundationoficf.org/scholarships/applications/?gad_source=1&gclid=CjwKCAiAn9a9BhBtEiwAbKg6fmcBZCwzzZOZd22rfy94JVS1zG170E48V3ErqkKP5tLAdaoO_IcuBhoCBWQQAvD_BwE'>Book a Session</a>
             </button>
           </div>
 
@@ -39,7 +39,7 @@ const SalesPromotion = () => {
               Apply early for select scholarships and get a 15% discount on application fees. Don’t miss out!
             </p>
             <button className="px-6 py-2 bg-[#ff5202] text-white rounded-lg hover:bg-[#da7749]">
-              Apply Now
+              <a target='blank' href='https://www.lshtm.ac.uk/study/masters-degrees/early-application-fee-reduction-terms-and-conditions'>Apply Now</a>
             </button>
           </div>
         </div>
