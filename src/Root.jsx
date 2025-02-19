@@ -26,6 +26,7 @@ import ManageUsers from "./Pages/AdminDashboard/ManageUsers";
 import AnalyticsCharts from "./Pages/AdminDashboard/AnalyticsCharts ";
 import PrivateAdmin from "./Pages/PrivateAdmin";
 import PrivateModaretor from "./Pages/PrivateModaretor";
+import Guides from "./Pages/Guides";
 
 
 
@@ -53,6 +54,10 @@ const Root = createBrowserRouter([
       {
         path: 'aboutUs',
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: 'guides',
+        element: <Guides></Guides>
       },
       {
         path: 'logIn',

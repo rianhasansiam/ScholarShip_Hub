@@ -46,6 +46,7 @@ const Navbar = () => {
               {userData ? (userRole === 'Moderator' ? <li><NavLink to="/moderatordashboard/myprofile" className="nav-item">Moderator Dashboard</NavLink></li> : '') : ''}
               {userData ? (userRole === 'Admin' ? <li><NavLink to="/admindashboard/myprofile" className="nav-item">Admin Dashboard</NavLink></li> : '') : ''}
               <li> <NavLink to="/aboutUs" className="nav-item">AboutUs</NavLink></li>
+              <li> <NavLink to="/guides" className="nav-item">Guides</NavLink></li>
 
 
             </ul>
@@ -64,6 +65,7 @@ const Navbar = () => {
             {userData ? (userRole === 'Admin' ? <li><NavLink to="/admindashboard/myprofile" className="nav-item">Admin Dashboard</NavLink></li> : '') : ''}
 
             <li> <NavLink to="/aboutUs" className="nav-item">About Us</NavLink></li>
+            <li> <NavLink to="/guides" className="nav-item">Guides</NavLink></li>
 
             {/* User Dashboard (private), Admin Dashboard(private) */}
           </ul>
