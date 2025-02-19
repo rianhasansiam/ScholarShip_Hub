@@ -12,7 +12,7 @@ The **Scholarship Management System** is a web application designed to help stud
 ## Screenshot
 ![Scholarship Hub Screenshot](https://rianhasansiam-64bc5.web.app/assets/scholarshiHUb-D_LzlTgO.png)
 
-## Key Features
+## Core Features
 
 - **Student Role**: Students can register, search for scholarships, apply, and track the status of their applications.
 - **Admin Dashboard**: Administrators can manage scholarship listings, view and update student applications, and monitor application analytics.
@@ -20,6 +20,30 @@ The **Scholarship Management System** is a web application designed to help stud
 - **Search Scholarships**: A dynamic search feature to find scholarships based on academic background, university preferences, and more.
 - **Application Status Tracking**: Users can track their application progress (Pending, Processing, Completed, Rejected).
 - **Analytics Dashboard**: Visualize data on applications over time, applications by category, status, and university.
+
+
+
+
+## Dependencies
+
+- @stripe/react-stripe-js
+- @stripe/stripe-js
+- @tanstack/react-query
+- Axios
+- Firebase
+- LocalForage
+- Match Sorter
+- React
+- React DOM
+- React Icons
+- React Router DOM
+- React Toastify
+- React Tooltip
+- Recharts
+- Sort By
+- SweetAlert
+- SweetAlert2
+- Swiper
   
 ## Technologies and Libraries
 
@@ -66,19 +90,28 @@ Follow these steps to set up the project locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/rianhasansiam/ScholarShip_Hub.git
-   cd cozystay  
+   
    ```
 
 
-2. **Install Dependencies**:
+2. **Navigate to the project directory**:
+   ```bash
+   cd ScholarShip_Hub
+   ```
+
+
+3. **Install dependencies**:
    ```bash
    npm install
    ```
 
 
-3. **Project start**:
+
+
+4. **Run the project**:
    ```bash
-   npm start
+   npm run dev
+
    ```
 
 
